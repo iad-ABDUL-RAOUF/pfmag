@@ -11,7 +11,7 @@
 // resamppling method and then to provide specific implementation
 // elsewhere.
 
-// ResamplingStrategy is the type of a pointer to a function
+// ResamplingStrategy is the type of a function pointer
 // taking as argument (double* logweights, State* states) and
 // returning void
 // An example of specific implementation is the "doNothingResampling"
