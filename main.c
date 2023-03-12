@@ -59,11 +59,14 @@ int main(int argc, char** argv){
         // resample
         resampling(logweights,states);
 
+        // TODO write particles
 
     // TODO write outputs in csv file format
     
     free(logweights);
     free(states);
+    destroyData(odometry);
+    destroyData(magobs);
 
     printf("-------the end-------\n");
     return 0;
