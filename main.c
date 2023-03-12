@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main(int argc, char** argv){
     
@@ -18,6 +19,11 @@ int main(int argc, char** argv){
     char* odometryfn = argv[2];
     char* observationfn = argv[3];
     char* magmapfn = argv[4];
+    char* resamplingName = argv[5];
+    ResamplingStrategy resampling;
+    if (strcmp(resamplingName,"noResampling") == 0){
+        resampling = doNothingResampling;
+    }
 
     // load inputs
     MagneticMap magmap; // TODO read file
@@ -51,7 +57,7 @@ int main(int argc, char** argv){
         moveParticle(logweights, states);
 
         // resample
-        // TODO
+        resampling(logweights,states);
 
 
     // TODO write outputs in csv file format

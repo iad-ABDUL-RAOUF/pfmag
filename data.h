@@ -15,6 +15,7 @@ typedef struct Data{
 } Data;
 
 Data createData(unsigned int dim, unsigned int len, double** vals);
+Data destroyData(Data data);
 
 double* getVal(Data data, unsigned int i);
 unsigned int getLen(Data data);
