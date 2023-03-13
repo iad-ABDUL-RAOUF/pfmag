@@ -20,6 +20,6 @@ typedef void (*ResamplingStrategy)(double* logweights, Data* states);
 
 // note that this interface is limited as it does not allow the usage
 // of additionnal parameters. However it should be good enough for this
-// project. Feel free to improve it.
+// project. If needed, feel free to improve it.
 
 #endif
