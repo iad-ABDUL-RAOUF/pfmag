@@ -1,4 +1,4 @@
-#include "state.h"
+#include "data.h"
 
 #ifndef RESAMPLINGSTRATEGY_H
 #define RESAMPLINGSTRATEGY_H
@@ -16,7 +16,7 @@
 // returning void
 // An example of specific implementation is the "doNothingResampling"
 // And an example of usage is found in the main. 
-typedef void (*ResamplingStrategy)(double* logweights, State* states);
+typedef void (*ResamplingStrategy)(double* logweights, Data* states);
 
 // note that this interface is limited as it does not allow the usage
 // of additionnal parameters. However it should be good enough for this

@@ -1,6 +1,6 @@
 #include "doNothingResampling.h"
 
-void doNothingResampling(double* weights, State* states){
+void doNothingResampling(double* logweights, Data* states){
     // do not resample particles
     return;
 }
