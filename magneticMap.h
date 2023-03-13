@@ -1,27 +1,24 @@
 #ifndef MAGNETICMAP_H
 #define MAGNETICMAP_H
 
-// Here is a code for the magnetic map that is somewhat real
-// and somewhat fake.
+// Here is a magnetic map. You can interact with it using the provided
+// functions
 
-// It takes as input a file of magnetic values sampled on a grid
-// of position from a real map. Then it interpolates the values
-// in between. Because covariance interpolation isn't straitforward,
-// I used fake covariances.
+// I used the FIRST-CLASS ADT design pattern to hide implementation details
+// http://adampetersen.se/Patterns%20in%20C%201.pdf
 
-// I could not provide you the original map code for several reason :
-// - it is the property of my company (CEA)
-// - it is in C++
-// - it is too long to redevelop in C for this project
+typedef struct MagneticMap MagneticMap;
 
-// But don't worry the magnetic measurement of the dataset I gave
-// you are simulated to be coherent with this half fake map...
-// These simulated data respect perfectly the map model which is
-// never the case with real data. Thus you should actually get better 
-// results compared to if you used the real thing. Enjoy !
+MagneticMap* readMagneticMapFile(char* filename);
 
-typedef struct MagneticMap {
-// TODO
-} MagneticMap;
+// "position" is the position x,y,z at which one requieres to consult the map
+// of the magnetic field
+// magVec is the magnetic field value mx,my,mz returned by the map
+// magCov is the 3x3 covariance matrix associated to the returned values. It 
+// represent an uncertainty. The smaller the covariance is the more confident
+// we are.
+predict(double* position, double* magVec, double* magCov);
+
+
 
 #endif
