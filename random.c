@@ -5,7 +5,11 @@
 
 
 double uniform(double min, double max){
-    return ((double)rand()) / ((double)RAND_MAX +1);
+    return min + (max-min) * ((double)rand()) / ((double)RAND_MAX +1.0);
+}
+
+int uniformInt(int min, int max){
+    return (int) floor(uniform(min, max));
 }
 
 double gaussian(double mu, double sigma){
