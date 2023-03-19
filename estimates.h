@@ -11,7 +11,7 @@ double integrate(
     const Integrand integrand
 );
 
-typedef void (*computeEstimates)(
+typedef void (*ComputeEstimates)(
     const Data* states,
     const Data* logweights,
     unsigned int currentIteration,
