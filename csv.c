@@ -16,10 +16,11 @@ Data* readCsv(const char* filename, const char* separator){
         exit(EXIT_FAILURE);
     }
 
-    // throw away the first line (assumes it is header commentary)
+    // skip the first line (assumes it is header commentary)
     char row[LINEMAXCHAR];
     fgets(row, LINEMAXCHAR, file);
 
+    // read the rest of the file
     Data* data = readCsvFile(file, separator);
     
     fclose(file);
@@ -74,7 +75,7 @@ Data* readCsvFile(FILE* file, const char* separator){
         data = createData(dim,0);
     }
     else{
-        unsigned int nline = getNLine(filename) - 1; // minus one to ignore first line commentary
+        unsigned int nline = getNLine(file);
         dim = getNValues(row, separator);
         data = createData(dim,nline);
         double values[dim]; 
@@ -128,19 +129,18 @@ unsigned int getNValues(const char* row, const char* separator){
     return i;
 }
 
-unsigned int getNLine(const char* filename){
-    FILE *file = fopen(filename,'r');
-    if (file == NULL){
-        printf("getNLine could not open file");
-        exit(EXIT_FAILURE);
-    }
+unsigned int getNLine(FILE* file){
+    int initialPosition = ftell(file);
     
+    // loop through the file, stoping at each end of line
     unsigned int nLine = 0;
     char row[LINEMAXCHAR];
     while (fgets(row, LINEMAXCHAR, file) != EOF){
         ++nLine;
     }
-    fclose(file);
+    
+    // set the file stream position where it was before looping 
+    fseek(file, initialPosition, SEEK_SET);
     return nLine;
 }
 
