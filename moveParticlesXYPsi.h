@@ -1,5 +1,6 @@
 #include "stateXYPsi.h"
 #include "magneticMap.h"
+#include "data.h"
 
 #ifndef MOVEPARTICLESXYPSI_H
 #define MOVEPARTICLESXYPSI_H
@@ -24,7 +25,7 @@ typedef struct MoveXYPsiParam{
 }MoveXYPsiParam;
 
 // update all particles
-void moveParticlesXYPsi(double* logweight, StatesXYPsi* states, void* params);
+void moveParticlesXYPsi(Data* logweight, StatesXYPsi* states, void* params);
 
 // update just one particle
 void moveParticleXYPsi(double* logweight, double* state, MoveXYPsiParam* params);

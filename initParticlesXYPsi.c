@@ -5,7 +5,7 @@
 extern double* obs;
 extern MagneticMap* magmap;
 
-void initParticlesXYPsi(double* logweight, Data* states, void* params){
+void initParticlesXYPsi(Data* logweights, Data* states, void* params){
     // cast params from void* to its true type
     // be carefull, the compiler trusts you...
     InitXYPsiParam* initXYPsiparams = (InitXYPsiParam*) params;
@@ -14,7 +14,7 @@ void initParticlesXYPsi(double* logweight, Data* states, void* params){
     unsigned int nParticles = getLen(states);
     for (unsigned int i=0; i<nParticles; ++i){
         double* state = getVal(states, i);
-        initParticleXYPsi(&logweight[i],state,initXYPsiparams);
+        initParticleXYPsi(getVal(logweights,i) ,state,initXYPsiparams);
     }
 }
 

@@ -3,7 +3,7 @@
 #include "odometry.h"
 #include <math.h>
 
-void moveParticlesXYPsi(double* logweight, StatesXYPsi* states, void* params){
+void moveParticlesXYPsi(Data* logweights, StatesXYPsi* states, void* params){
     // cast params from void* to its true type
     // be carefull, the compiler trusts you...
     MoveXYPsiParam* moveXYPsiparams = (MoveXYPsiParam*) params;
@@ -12,7 +12,7 @@ void moveParticlesXYPsi(double* logweight, StatesXYPsi* states, void* params){
     unsigned int nParticles = getLen(states);
     for (unsigned int i=0; i<nParticles; ++i){
         double* state = getVal(states, i);
-        moveParticleXYPsi(&logweight[i],state,moveXYPsiparams);
+        moveParticleXYPsi(getVal(logweights,i),state,moveXYPsiparams);
     }
 }
 

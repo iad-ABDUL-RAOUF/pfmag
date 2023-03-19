@@ -1,5 +1,6 @@
 #include "moveParticlesXYPsi.h"
 #include "stateXYPsi.h"
+#include "data.h"
 
 #ifndef INITPARTICLESXYPSI_H
 #define INITPARTICLESXYPSI_H
@@ -8,7 +9,7 @@
 typedef MoveXYPsiParam InitXYPsiParam;
 
 // initializes all particles
-void initParticlesXYPsi(double* logweight, StatesXYPsi* states, void* params);
+void initParticlesXYPsi(Data* logweights, StatesXYPsi* states, void* params);
 
 // initializes just one particle
 void initParticleXYPsi(double* logweight, double* state, InitXYPsiParam* params);

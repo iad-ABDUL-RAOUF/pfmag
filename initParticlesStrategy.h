@@ -10,6 +10,6 @@
 
 // see the commentary inside "resamplingStrategy.h" for
 // a detailed explanation
-typedef void (*InitParticlesStrategy)(double* logweight, Data* states, void* params);
+typedef void (*InitParticlesStrategy)(Data* logweights, Data* states, void* params);
 
 #endif

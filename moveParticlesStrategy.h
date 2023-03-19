@@ -12,6 +12,6 @@
 // void* will allow you to use any paramter type.
 // Be carefull, using void* is unsafe because the compiler has no information on
 // the input type and cannnot detect bugs for you.
-typedef void (*MoveParticlesStrategy)(double* logweight, Data* states, void* params);
+typedef void (*MoveParticlesStrategy)(Data* logweights, Data* states, void* params);
 
 #endif
