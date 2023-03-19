@@ -1,5 +1,4 @@
 #include "odometry.h"
-#include "magneticObservation.h"
 
 #include "statesFactory.h"
 #include "initParticlesXYPsi.h"
@@ -20,8 +19,8 @@
 
 // some global variables used by init particle and by
 // move particle functions...
-Mag obs;
-Odom odom;
+double* odom;
+double* obs;
 MagneticMap* magmap;
 
 int main(int argc, char** argv){
@@ -45,12 +44,21 @@ int main(int argc, char** argv){
     StatesFactory createState;
     InitParticlesStrategy initParticles;
     MoveParticlesStrategy moveParticles;
+    void* moveParams;
+    void* initParams;
     if(strcmp(stateName,"XYPsi")){
         createState = createStatesXYPsi;
         initParticles = initParticlesXYPsi;
         moveParticles = moveParticlesXYPsi;
+        MoveXYPsiParam mparam = {.std_obs=0.3, .std_ux=0.1, .std_uy=0.1, .std_upsi=0.024,
+                            .bx=9.0, .by=-2.3, .bz=4.8};
+        InitXYPsiParam iparam = mparam; // cast possible because its actually the same type (typedef)
+        moveParams = (void*) &mparam;
+        initParams = (void*) &iparam;
     }
+    // add other possibility if you work on the option 2 of this course project ;)
     else{
+        
         printf("unkown state type");
         exit(EXIT_FAILURE);
     }
@@ -59,17 +67,19 @@ int main(int argc, char** argv){
     if (strcmp(resamplingName,"noResampling") == 0){
         resampling = doNothingResampling;
     }
+    // add other possibility here to use other resampling strategy (see preliminary and
+    // option 1 of this course project)
     else{
         printf("unkown resampling algorithm");
         exit(EXIT_FAILURE);
     }
 
     // load inputs
-    magmap = readMagneticMapFile(magmapFilename);
-    Data* odometry = readCsv(odometryFilename);
-    Data* magobs = readCsv(observationFilename);    
+    magmap = createMagneticMap(magmapFilename);
+    Data* odometry = readCsv(odometryFilename,",");
+    Data* magobs = readCsv(observationFilename,",");
 
-    // TODO set random number seed (for reproductibility)
+    // TODO set random seed (for reproductibility)
 
     // A good practice would be to assert that all inputs are sane. For instance
     // one could check that N is strictly positive, and that there is exactly one
@@ -86,7 +96,7 @@ int main(int argc, char** argv){
     // numerical precision issues.
     double* logweights = malloc(N*sizeof(double));
     Data* states = createState(N);
-    initParticles(logweights, states);
+    initParticles(logweights, states, initParams);
 
     // move particles for each time step
     unsigned int nObs = getLen(magobs);
@@ -95,7 +105,7 @@ int main(int argc, char** argv){
         // of minus one compared to the observation index t.
         odom = getVal(odometry, t-1);
         obs = getVal(magobs, t);
-        moveParticle(logweights, states);
+        moveParticles(logweights, states, moveParams);
 
         // resample
         resampling(logweights,states);
@@ -111,6 +121,8 @@ int main(int argc, char** argv){
     destroyData(magobs);
     free(logweights);
     destroyData(states);
+    destroyMagneticMap(magmap);
+    
 
     // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     // Compare the particle filter estimates with the ground thruth.
