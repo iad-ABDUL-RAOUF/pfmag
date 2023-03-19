@@ -44,3 +44,19 @@ unsigned int getLen(Data* data){
 unsigned int getDim(Data* data){
     return data->dim;
 }
+
+void setVal(Data* data, unsigned int i, double* val){
+    double* dataVal = getVal(data,i);
+    unsigned int dim = getDim(data);
+    for (unsigned int d = 0; d<dim; ++d){
+        dataVal[d] = val[d];
+    }
+}
+
+void setConstantVal(Data* data, unsigned int i, double val){
+    double* dataVal = getVal(data,i);
+    unsigned int dim = getDim(data);
+    for (unsigned int d = 0; d<dim; ++d){
+        dataVal[d] = val;
+    }
+}

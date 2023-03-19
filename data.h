@@ -20,9 +20,18 @@ typedef struct Data Data;
 Data* createData(unsigned int dim, unsigned int len);
 void destroyData(Data* data);
 
+// getters
+
 // getVal return the reference of the first element of the i-th vector
 double* getVal(Data* data, unsigned int i);
 unsigned int getLen(Data* data);
 unsigned int getDim(Data* data);
+
+// setters
+
+// copy the first "dim" double from "val" into the i-th vector of data
+void setVal(Data* data, unsigned int i, double* val);
+// set all component of the i-th vector of data to val 
+void setConstantVal(Data* data, unsigned int i, double val)
 
 #endif
