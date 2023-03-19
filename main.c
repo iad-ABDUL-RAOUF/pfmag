@@ -125,7 +125,7 @@ int main(int argc, char** argv){
         // and see where it should go
         // TODO compute and store estimate
 
-        writeParticles(states, logweights, particlesDirname, t); // TODO virer du timer
+        writeParticles(states, logweights, outputDirname, t); // TODO virer du timer
 
     // TODO write estimates in csv file format
     
