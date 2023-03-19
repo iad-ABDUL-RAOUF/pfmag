@@ -6,4 +6,4 @@ The simultaneous localisation and calibration part may be more difficult (but mo
 
 # TODO
 
-indiquer : les dépendances, comment compiler, comment executer
+indiquer : comment compiler, comment executer
