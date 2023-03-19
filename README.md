@@ -4,6 +4,6 @@ Also I will provide the list of important file to look at for each part of the p
 
 The simultaneous localisation and calibration part may be more difficult (but more interesting ?) than the resampling part. Choose your subject carefully...
 
-# TODO
+# TODO
 
 indiquer : comment compiler, comment executer
