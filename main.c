@@ -1,6 +1,5 @@
 #include "odometry.h"
 
-#include "statesFactory.h"
 #include "initParticlesXYPsi.h"
 #include "initParticlesStrategy.h"
 #include "moveParticlesXYPsi.h"
@@ -45,17 +44,17 @@ int main(int argc, char** argv){
     // There is a lot of input variables here, you might want to
     // load them by other means (e.g. from configuration file)
 
-    // Here functions are variables !!
+    // Here functions are aso variables !
     // You can choose which function to select at
     // runtime depending on user inputs.
-    StatesFactory createState;
+    Data* states;
     InitParticlesStrategy initParticles;
     MoveParticlesStrategy moveParticles;
     void* moveParams;
     void* initParams;
     // OPTION2 : the state is chosen here. 
     if(strcmp(stateName,"XYPsi")){
-        createState = createStatesXYPsi;
+        states = createStatesXYPsi(nParticles);
         initParticles = initParticlesXYPsi;
         moveParticles = moveParticlesXYPsi;
         MoveXYPsiParam mparam = {.std_obs=0.3, .std_ux=0.1, .std_uy=0.1, .std_upsi=0.024,
@@ -104,8 +103,6 @@ int main(int argc, char** argv){
     // logweights contains the logarithm of weights. It is advantageous because of
     // numerical precision issues.
     Data* logweights = createData(1,nParticles);
-    Data* weights = createData(1,nParticles);
-    Data* states = createState(nParticles);
     initParticles(logweights, states, initParams);
     resampling(logweights,states);
     writeParticles(states, logweights, outputDirname, t);
