@@ -1,14 +1,42 @@
 #include "initParticlesXYPsi.h"
 #include "magneticMap.h"
-#include "magneticObservation.h"
+#include "random.h"
 
-extern Mag obs;
+extern double* obs;
 extern MagneticMap* magmap;
 
-void initParticlesXYPsi(double* logweight, Data* states){
+void initParticlesXYPsi(double* logweight, Data* states, void* params){
+    // cast params from void* to its true type
+    // be carefull, the compiler trusts you...
+    InitXYPsiParam* initXYPsiparams = (InitXYPsiParam*) params;
+
+    // init all particles
     unsigned int nParticles = getLen(states);
     for (unsigned int i=0; i<nParticles; ++i){
         StateXYPsi state = getVal(states, i);
-        initXYPsiParticle(&logweight[i],state);
+        initParticleXYPsi(&logweight[i],state,initXYPsiparams);
     }
+}
+
+void initParticleXYPsi(double* logweight, StateXYPsi state, InitXYPsiParam* params){
+
+    // Initializes a random particle position inside the map.
+    // The map spatial shape is described by a collection of squares and therefore
+    // the initialization is done as follow:
+    // - randomly select a square
+    // - create a random position inside this square
+    Data* squareCenters;
+    double sideLength;
+    getMapShape(magmap,squareCenters,&sideLength);
+    int nSquare = (int)getLen(squareCenters);
+    unsigned int k = (unsigned int)uniformInt(0,nSquare);
+    double* square = getVal(squareCenters,k);
+    XYPsiSetX(state,square[0] + uniform(-sideLength/2,sideLength/2));
+    XYPsiSetY(state,square[1] + uniform(-sideLength/2,sideLength/2));
+
+    // Initializes a random particle orientation
+    XYPsiSetPsi(state,uniform(0,2*M_PI));
+
+    // Initializes particle weight
+    *logweight = logLikelihoodXYPsi(state, params);
 }
