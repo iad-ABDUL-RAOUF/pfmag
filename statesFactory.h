@@ -6,10 +6,11 @@
 // StateFactory define the interface of a function that creates
 // our particle states. It allows you to switch between different states
 // in main.c without any code modification (in particular, without
-// dirty copying and pasting and/or commenting out blocks of code...)
+// dirty copying and pasting and/or commenting out blocks of code...).
+// An implementation example is createStatesXYPsi in stateXYPsi.h and .c
 
 // I called this pattern a "Factory" because it "creates" something but
-// it uses actually the same programmation tricks as described in
+// it uses actually the same programing tricks as described in
 // "resamplingStrategy.h"
 
 typedef Data* (*StatesFactory)(unsigned int len);
