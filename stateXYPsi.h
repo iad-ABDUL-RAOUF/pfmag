@@ -4,19 +4,22 @@
 #define STATEXYPSI_H
 
 typedef Data StatesXYPsi;
-typedef double* StateXYPsi;
 
 // create states
 StatesXYPsi* createStatesXYPsi(unsigned int len);
 
-// get state components
-double XYPsiGetX(StateXYPsi state);
-double XYPsiGetY(StateXYPsi state);
-double XYPsiGetPsi(StateXYPsi state);
+// getters and setters to avoid index confusion
 
-// set state components
-void XYPsiSetX(StateXYPsi state, double x);
-void XYPsiSetY(StateXYPsi state, double y);
-void XYPsiSetPsi(StateXYPsi state, double psi);
+// getters
+
+double XYPsiGetX(double* state);
+double XYPsiGetY(double* state);
+double XYPsiGetPsi(double* state);
+
+// setters
+
+void XYPsiSetX(double* state, double x);
+void XYPsiSetY(double* state, double y);
+void XYPsiSetPsi(double* state, double psi);
 
 #endif

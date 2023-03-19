@@ -27,9 +27,9 @@ typedef struct MoveXYPsiParam{
 void moveParticlesXYPsi(double* logweight, StatesXYPsi* states, void* params);
 
 // update just one particle
-void moveParticleXYPsi(double* logweight, StateXYPsi state, MoveXYPsiParam* params);
+void moveParticleXYPsi(double* logweight, double* state, MoveXYPsiParam* params);
 
 // compute lodweight increment
-double logLikelihoodXYPsi(StateXYPsi state, MoveXYPsiParam* params);
+double logLikelihoodXYPsi(double* state, MoveXYPsiParam* params);
 
 #endif

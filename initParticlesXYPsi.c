@@ -13,12 +13,12 @@ void initParticlesXYPsi(double* logweight, Data* states, void* params){
     // init all particles
     unsigned int nParticles = getLen(states);
     for (unsigned int i=0; i<nParticles; ++i){
-        StateXYPsi state = getVal(states, i);
+        double* state = getVal(states, i);
         initParticleXYPsi(&logweight[i],state,initXYPsiparams);
     }
 }
 
-void initParticleXYPsi(double* logweight, StateXYPsi state, InitXYPsiParam* params){
+void initParticleXYPsi(double* logweight, double* state, InitXYPsiParam* params){
 
     // Initializes a random particle position inside the map.
     // The map spatial shape is described by a collection of squares and therefore
