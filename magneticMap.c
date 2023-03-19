@@ -25,7 +25,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define LINEMAXCHAR 1000
+#define LINEMAXCHAR 1024
 
 // Bellow are some private function signatures (not in .h as you should
 // not include them anywhere else).
@@ -183,7 +183,7 @@ void readMapData(FILE* file, MagneticMap* magmap){
 
     // fill in the rectangle map with default values
     for (unsigned int i = 0; i<lenRectangleMap; ++i){
-        setConstantVal(magmap->magVals, i, 0.0);
+        setScalarVal(magmap->magVals, i, 0.0);
         magmap->magStd[i] = 25.5; // it should be a parameter...
     }
 
