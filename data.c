@@ -53,7 +53,7 @@ void setVal(Data* data, unsigned int i, double* val){
     }
 }
 
-void setConstantVal(Data* data, unsigned int i, double val){
+void setScalarVal(Data* data, unsigned int i, double val){
     double* dataVal = getVal(data,i);
     unsigned int dim = getDim(data);
     for (unsigned int d = 0; d<dim; ++d){

@@ -32,6 +32,6 @@ unsigned int getDim(Data* data);
 // copy the first "dim" double from "val" into the i-th vector of data
 void setVal(Data* data, unsigned int i, double* val);
 // set all component of the i-th vector of data to val 
-void setConstantVal(Data* data, unsigned int i, double val)
+void setScalarVal(Data* data, unsigned int i, double val);
 
 #endif
