@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 
-#define LINEMAXCHAR 1000
+#define LINEMAXCHAR 1024
 #define VALMAXCHAR 128
 
 // simple (but limited) implementation based on :
@@ -36,8 +36,8 @@ void writeCsv(const char* filename, const Data* data, const char* header){
     }
 
     // add an end of line to the header and write it in the file
-    char firstrow[sizeof(header)];
-    strcat(firstrow,"\n");
+    char firstrow[sizeof(header)+1];
+    snprintf(firstrow, sizeof(firstrow), "%s%s", header, "\n");
     fprintf(file,firstrow);
 
     // write data in the file
@@ -45,12 +45,9 @@ void writeCsv(const char* filename, const Data* data, const char* header){
     unsigned int length = getLen(data);
     for (unsigned int i=0; i<length; ++i){
         double* values = getVal(data, i);
-        char* row = ""; 
+        char row[LINEMAXCHAR] = ""; 
         for (unsigned int d=0; d<dim; ++d){
-            char buffer[VALMAXCHAR];
-            snprintf(buffer, sizeof(buffer), "%f", values[d]);
-            strcat(row,buffer);
-            strcat(row,",");
+            snprintf(row, sizeof(row), "%s%f,", row, values[d]);
         }
         if (dim > 0){
             // replace the last ',' by an end of line
