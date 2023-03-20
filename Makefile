@@ -16,14 +16,14 @@ SOURCES := ${SOURCES} stateXYPsi.c weight.c writeParticles.c
 
 OBJECTS := $(SOURCES:%.c=%.o)
 
-all: ${pfmag}
+all: pfmag
 
 # Compiling each object separately is more efficient. If it is already compiled
 # and up to date, this Makefile will not create it again.
 %.o: %.c
 	${CC} -c $<
 
-pfmag: OBJECTS
+pfmag: ${OBJECTS}
 	@echo "create executable"$@
 	${CC} ${LINKERFLAG} $< -o $@
 
