@@ -7,11 +7,11 @@
 
 CC = gcc
 
-LINKERFLAG = -lm
+LINKERFLAG = -lm -lgsl -lgslcblas
 
 # Just break SOURCES in multiples lines because it is too long to fit it on one line on my screen...
 SOURCES := csv.c data.c doNothingResampling.c estimates.c estimatesXYPsi.c initParticlesXYPsi.c
-SOURCES := ${SOURCES} magneticMap.c moveParticlesXYPsi.c odometry.c pfmag.c random.c 
+SOURCES := ${SOURCES} magneticMap.c moveParticlesXYPsi.c odometry.c pfmag.c
 SOURCES := ${SOURCES} stateXYPsi.c weight.c writeParticles.c
 
 OBJECTS := $(SOURCES:%.c=%.o)

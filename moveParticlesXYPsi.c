@@ -1,6 +1,7 @@
 #include "moveParticlesXYPsi.h"
 #include "random.h"
 #include "odometry.h"
+#include <gsl/gsl_randist.h>
 #include <math.h>
 
 void moveParticlesXYPsi(Data* logweights, StatesXYPsi* states, void* params){
@@ -17,9 +18,9 @@ void moveParticlesXYPsi(Data* logweights, StatesXYPsi* states, void* params){
 }
 
 void moveParticleXYPsi(double* logweight, double* state, const MoveXYPsiParam* params){
-    double ux = odomGetUx(odom) + gaussian(0,params->std_ux);
-    double uy = odomGetUy(odom) + gaussian(0,params->std_uy);
-    double upsi = odomGetUpsi(odom) + gaussian(0,params->std_upsi);
+    double ux = odomGetUx(odom) + gsl_ran_gaussian(randomGenerator, params->std_ux);
+    double uy = odomGetUy(odom) + gsl_ran_gaussian(randomGenerator, params->std_uy);
+    double upsi = odomGetUpsi(odom) + gsl_ran_gaussian(randomGenerator, params->std_upsi);
 
     double x = XYPsiGetX(state);
     double y = XYPsiGetY(state);

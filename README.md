@@ -8,6 +8,14 @@ Also I will provide the list of important files to look at for each part of the 
 
 The simultaneous localisation and calibration part may be more difficult (but more interesting ?) than the resampling part. Choose your subject carefully...
 
+# Dependencies
+
+This code depend on the GNU Scientific Library (GSL) for random number generation
+
+```shell
+sudo apt-get install libgsl-dev
+```
+
 # Compilation
 
 I already created a Makefile for you. Open a terminal, go in the directory and type :

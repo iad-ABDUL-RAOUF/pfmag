@@ -1,6 +1,7 @@
 #include "initParticlesXYPsi.h"
 #include "magneticMap.h"
 #include "random.h"
+#include <gsl/gsl_randist.h>
 #include <math.h>
 
 extern double* obs;
@@ -28,15 +29,15 @@ void initParticleXYPsi(double* logweight, double* state, const InitXYPsiParam* p
     // - create a random position inside this square
     Data* squareCenters;
     double sideLength;
-    getMapShape(magmap,squareCenters,&sideLength);
-    int nSquare = (int)getLen(squareCenters);
-    unsigned int k = (unsigned int)uniformInt(0,nSquare);
-    double* square = getVal(squareCenters,k);
-    XYPsiSetX(state,square[0] + uniform(-sideLength/2,sideLength/2));
-    XYPsiSetY(state,square[1] + uniform(-sideLength/2,sideLength/2));
+    getMapShape(magmap,squareCenters, &sideLength);
+    int nSquare = getLen(squareCenters);
+    unsigned int k = gsl_rng_uniform_int(randomGenerator, nSquare);
+    double* square = getVal(squareCenters, k);
+    XYPsiSetX(state, square[0] + gsl_ran_flat(randomGenerator, -sideLength/2, sideLength/2));
+    XYPsiSetY(state, square[1] + gsl_ran_flat(randomGenerator, -sideLength/2, sideLength/2));
 
     // Initializes a random particle orientation
-    XYPsiSetPsi(state,uniform(0,2*M_PI));
+    XYPsiSetPsi(state, gsl_ran_flat(randomGenerator, 0, 2*M_PI));
 
     // Initializes particle weight
     *logweight = logLikelihoodXYPsi(state, params);

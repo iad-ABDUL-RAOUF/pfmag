@@ -12,19 +12,23 @@
 #include "magneticMap.h"
 #include "csv.h"
 #include "data.h"
-
+#include "random.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 // Some global variables used by initParticle and by moveParticle functions...
+
 // Input odometry
 double* odom;
 // Input magnetic vector (observation)
 double* obs;
 // Input magnetic map of the area
 MagneticMap* magmap;
+
+// random generator also used during resampling
+gsl_rng* randomGenerator;
 
 int main(int argc, char** argv){
     
@@ -102,7 +106,10 @@ int main(int argc, char** argv){
     // create output directory and base filename
     // mkdirParticles(outputDirname); // TODO supprimer (aussi de .c et .h) c'est le bash qui va creer le dossier (?)
 
-    // TODO set random seed (for reproductibility)
+    // create the random number generator
+    randomGenerator = gsl_rng_alloc(gsl_rng_default);
+    // set always the same seed for reproductibility (better for debuging)
+    gsl_rng_set(randomGenerator, 123456789);
 
     // A good practice would be to assert that all inputs are sane. For instance
     // one could check that nParticles is strictly positive, that there is
@@ -157,6 +164,7 @@ int main(int argc, char** argv){
     destroyData(logweights);
     destroyData(states);
     destroyMagneticMap(magmap);
+    gsl_rng_free(randomGenerator);
 
     // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     // Compare the particle filter estimates with the ground thruth.
