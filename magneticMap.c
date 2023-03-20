@@ -152,7 +152,7 @@ void getMapShape(const MagneticMap* magmap, Data* squareCenters, double* squareS
 
 void readParametersFromFile(FILE* file, MagneticMap* magmap){
     char row[LINEMAXCHAR];
-    if(fgets(row, LINEMAXCHAR, file) == EOF){
+    if(fgets(row, LINEMAXCHAR, file) == NULL){
         printf("readParametersFromFile found no parameters in file");
         exit(EXIT_FAILURE);
     }

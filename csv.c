@@ -66,7 +66,7 @@ Data* readCsvFile(FILE* file, const char* separator){
     char row[LINEMAXCHAR];
     Data* data;
     unsigned int dim;
-    if(fgets(row, LINEMAXCHAR, file) == EOF){
+    if(fgets(row, LINEMAXCHAR, file) == NULL){
         // csv file is empty
         dim = 0;
         data = createData(dim,0);
@@ -82,7 +82,7 @@ Data* readCsvFile(FILE* file, const char* separator){
     
     // read file line by line and fills up output data
     unsigned int i = 1;
-    while (fgets(row, LINEMAXCHAR, file) != EOF){
+    while (fgets(row, LINEMAXCHAR, file) != NULL){
         double values[dim]; 
         unsigned int nvals = getNValues(row, separator);
         // skip empty lines and test that each line has the same number of element
@@ -110,7 +110,6 @@ void parseRow(const char* row, const char* separator, double* values){
         values[i] = atof(token);
         ++i;
         token = strtok(NULL, separator);
-        
     }
 }
 
@@ -132,7 +131,7 @@ unsigned int getNLine(FILE* file){
     // loop through the file, stoping at each end of line
     unsigned int nLine = 0;
     char row[LINEMAXCHAR];
-    while (fgets(row, LINEMAXCHAR, file) != EOF){
+    while (fgets(row, LINEMAXCHAR, file) != NULL){
         ++nLine;
     }
     
