@@ -9,7 +9,7 @@ extern MagneticMap* magmap;
 void initParticlesXYPsi(Data* logweights, Data* states, void* params){
     // cast params from void* to its true type
     // be carefull, the compiler trusts you...
-    InitXYPsiParam* initXYPsiparams = (InitXYPsiParam*) params;
+    InitXYPsiParam* initXYPsiparams = params;
 
     // init all particles
     unsigned int nParticles = getLen(states);

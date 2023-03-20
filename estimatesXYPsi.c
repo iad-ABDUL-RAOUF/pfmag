@@ -42,7 +42,7 @@ double integrandMeanX(const double* state, void* param){
     return XYPsiGetX(state);
 }
 double integrandVarX(const double* state, void* voidmX){
-    double* mX = (double*)voidmX;
+    double* mX = voidmX;
     double x = XYPsiGetX(state);
     return (x-*mX)*(x-*mX);
 }
@@ -51,7 +51,7 @@ double integrandMeanY(const double* state, void* param){
     return XYPsiGetY(state);
 }
 double integrandVarY(const double* state, void* voidmY){
-    double* mY = (double*)voidmY;
+    double* mY = voidmY;
     double y = XYPsiGetY(state);
     return (y-*mY)*(y-*mY);
 }
@@ -60,7 +60,7 @@ double integrandMeanCosPsi(const double* state, void* param){
     return cos(XYPsiGetPsi(state));
 }
 double integrandVarCosPsi(const double* state, void* voidmCosPsi){
-    double* mCosPsi = (double*)voidmCosPsi;
+    double* mCosPsi = voidmCosPsi;
     double cosPsi = cos(XYPsiGetPsi(state));
     return (cosPsi-*mCosPsi)*(cosPsi-*mCosPsi);
 }
@@ -70,7 +70,7 @@ double integrandMeanSinPsi(const double* state, void* param){
 }
 
 double integrandVarSinPsi(const double* state, void* voidmSinPsi){
-    double* mSinPsi = (double*)voidmSinPsi;
+    double* mSinPsi = voidmSinPsi;
     double sinPsi = sin(XYPsiGetPsi(state));
     return (sinPsi-*mSinPsi)*(sinPsi-*mSinPsi);
 }

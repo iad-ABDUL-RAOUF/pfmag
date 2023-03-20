@@ -6,7 +6,7 @@
 void moveParticlesXYPsi(Data* logweights, StatesXYPsi* states, void* params){
     // cast params from void* to its true type
     // be carefull, the compiler trusts you...
-    MoveXYPsiParam* moveXYPsiparams = (MoveXYPsiParam*) params;
+    MoveXYPsiParam* moveXYPsiparams = params;
 
     // move all particles
     unsigned int nParticles = getLen(states);

@@ -78,8 +78,8 @@ int main(int argc, char** argv){
         MoveXYPsiParam mparam = {.std_obs=0.3, .std_ux=0.1, .std_uy=0.1, .std_upsi=0.024,
                             .bx=9.0, .by=-2.3, .bz=4.8};
         InitXYPsiParam iparam = mparam;
-        moveParams = (void*) &mparam;
-        initParams = (void*) &iparam;
+        moveParams = &mparam;
+        initParams = &iparam;
         estimates = createEstimatesXYPsi(nObs);
         computeEstimates = computeEstimatesXYPsi;
     }
