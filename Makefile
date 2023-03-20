@@ -25,7 +25,7 @@ all: pfmag
 	${CC} -c $<
 
 pfmag: ${OBJECTS}
-	@echo "create executable"$@
+	@echo "create executable "$@
 	${CC} $^ -o $@ ${LINKERFLAG}
 
 clean_object:
