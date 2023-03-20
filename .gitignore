@@ -1,4 +1,10 @@
+# IDE internal files
 .vscode
+
+# compilation files
+*.o
+pfmag
+
+# mainbrouillon stuff
 a.out
-*.x
 mainbrouillon*.c
