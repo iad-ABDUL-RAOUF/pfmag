@@ -4,7 +4,7 @@ It compiles but I did not tried to execute it yet. Some features are also missin
 
 Stay tuned for future updates.
 
-Also I will provide the list of important file to look at for each part of the project.
+Also I will provide the list of important files to look at for each part of the project.
 
 The simultaneous localisation and calibration part may be more difficult (but more interesting ?) than the resampling part. Choose your subject carefully...
 
@@ -14,14 +14,14 @@ I already created a Makefile for you. Open a terminal, go in the directory and t
 ```shell
 make
 ```
-You will need to update the Makefile it everytime you add a new .c file.
+You will need to update the Makefile everytime you add a new ".c" file.
 
-To remove all the generated file type :
+To remove all the generated files :
 ```shell
 make clean
 ```
 
-And if you only want to remove all .o file while keeping the executable, type :
+And if you only want to remove all ".o" files while keeping the executable :
 ```shell
 make clean_object
 ```
