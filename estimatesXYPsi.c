@@ -26,14 +26,14 @@ void computeEstimatesXYPsi(
         exit(EXIT_FAILURE);
     }
     double currentEstimate[dim];
-    currentEstimate[0] = integrate(states, weights, integrandMeanX);
-    currentEstimate[1] = integrate(states, weights, integrandVarX);
-    currentEstimate[2] = integrate(states, weights, integrandMeanY);
-    currentEstimate[3] = integrate(states, weights, integrandVarY);
-    currentEstimate[4] = integrate(states, weights, integrandMeanCosPsi);
-    currentEstimate[5] = integrate(states, weights, integrandVarCosPsi);
-    currentEstimate[6] = integrate(states, weights, integrandMeanSinPsi);
-    currentEstimate[7] = integrate(states, weights, integrandVarSinPsi);
+    currentEstimate[0] = integrate(states, weights, integrandMeanX, NULL);
+    currentEstimate[1] = integrate(states, weights, integrandVarX, &currentEstimate[0]);
+    currentEstimate[2] = integrate(states, weights, integrandMeanY, NULL);
+    currentEstimate[3] = integrate(states, weights, integrandVarY, &currentEstimate[2]);
+    currentEstimate[4] = integrate(states, weights, integrandMeanCosPsi, NULL);
+    currentEstimate[5] = integrate(states, weights, integrandVarCosPsi, &currentEstimate[4]);
+    currentEstimate[6] = integrate(states, weights, integrandMeanSinPsi, NULL);
+    currentEstimate[7] = integrate(states, weights, integrandVarSinPsi, &currentEstimate[6]);
     setVal(estimates, currentIteration, currentEstimate);
     destroyData(weights);
 }

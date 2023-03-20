@@ -8,7 +8,8 @@ typedef double (*Integrand)(const double* state, void* params);
 double integrate(
     const Data* states,
     const Data* weights,
-    const Integrand integrand
+    const Integrand integrand,
+    void* params
 );
 
 typedef void (*ComputeEstimates)(
