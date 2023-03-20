@@ -27,6 +27,8 @@ void destroyData(Data* data);
 
 // getVal return the adress of the first element of the i-th vector
 double* getVal(const Data* data, unsigned int i);
+// getVals return the adress of the complete array
+double* getVals(const Data* data, unsigned int i);
 unsigned int getLen(const Data* data);
 unsigned int getDim(const Data* data);
 
