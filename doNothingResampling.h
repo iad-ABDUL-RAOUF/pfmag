@@ -3,6 +3,6 @@
 #ifndef DONOTHINGRESAMPLING_H
 #define DONOTHINGRESAMPLING_H
 
-void doNothingResampling(double* logweights, Data* states);
+void doNothingResampling(Data* logweights, Data* states);
 
 #endif

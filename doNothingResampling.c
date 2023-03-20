@@ -1,11 +1,8 @@
 #include "doNothingResampling.h"
 
-void doNothingResampling(double* logweights, Data* states){
-    // do not resample particles
-    
+void doNothingResampling(Data* logweights, Data* states){
     // a resampling function that do something would typically :
-    // - convert logwheights into weights using functions in logwheith.h
+    // - compute weights from logwheights using the function createNormalisedWeights (see wheight.h)
     // - perform the resampling
-    // - convert back weights into logwheights
-    return;
+    // - update logweights and states accordingly
 }
