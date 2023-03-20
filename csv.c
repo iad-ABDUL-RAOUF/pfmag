@@ -47,7 +47,11 @@ void writeCsv(const char* filename, const Data* data, const char* header){
         double* values = getVal(data, i);
         char row[LINEMAXCHAR] = ""; 
         for (unsigned int d=0; d<dim; ++d){
-            snprintf(row, sizeof(row), "%s%f,", row, values[d]);
+            int ret = snprintf(row, sizeof(row), "%s%f,", row, values[d]);
+            if(ret < 0 || sizeof(row) <= ret){
+                printf("in writeCsv error while converting into string, or data dim is too large to fit all values in a row");
+                exit(EXIT_FAILURE);
+            };
         }
         if (dim > 0){
             // replace the last ',' by an end of line

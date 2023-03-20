@@ -143,7 +143,11 @@ int main(int argc, char** argv){
 
     // write estimates in csv file format
     char estimatesFilename[1024];
-    snprintf(estimatesFilename, sizeof(estimatesFilename), "%sestimates.csv", outputDirname);
+    int ret = snprintf(estimatesFilename, sizeof(estimatesFilename), "%sestimates.csv", outputDirname);
+    if(ret < 0 || sizeof(estimatesFilename) <= ret){
+        printf("in main, outputDirname is too long");
+        exit(EXIT_FAILURE);
+    };
     writeCsv(estimatesFilename, estimates, "# state estimation based on particles after each observation");
 
     // clean up memory : every "create" or "malloc" should correspond to a
