@@ -1,10 +1,10 @@
 #include "odometry.h"
-
 #include "initParticlesXYPsi.h"
 #include "initParticlesStrategy.h"
 #include "moveParticlesXYPsi.h"
 #include "moveParticlesStrategy.h"
-
+#include "estimatesXYPsi.h"
+#include "estimates.h"
 #include "writeParticles.h"
 #include "doNothingResampling.h"
 #include "resamplingStrategy.h"
@@ -18,10 +18,12 @@
 #include <stdlib.h>
 #include <string.h>
 
-// some global variables used by init particle and by
-// move particle functions...
+// Some global variables used by initParticle and by moveParticle functions...
+// Input odometry
 double* odom;
+// Input magnetic vector (observation)
 double* obs;
+// Input magnetic map of the area
 MagneticMap* magmap;
 
 int main(int argc, char** argv){
@@ -44,14 +46,30 @@ int main(int argc, char** argv){
     // There is a lot of input variables here, you might want to
     // load them by other means (e.g. from configuration file)
 
-    // Here functions are aso variables !
+    // load inputs
+    magmap = createMagneticMap(magmapFilename);
+    Data* odometry = readCsv(odometryFilename,",");
+    Data* magobs = readCsv(observationFilename,",");
+    unsigned int nObs = getLen(magobs);
+
+    // In the following functions are also variables !
     // You can choose which function to select at
     // runtime depending on user inputs.
+
+    // contain a list of particle values
     Data* states;
+    // function to initialize particles
     InitParticlesStrategy initParticles;
-    MoveParticlesStrategy moveParticles;
-    void* moveParams;
+    // initialization parameters
     void* initParams;
+    // function to update (move) particles
+    MoveParticlesStrategy moveParticles;
+    // move parameters
+    void* moveParams;
+    // store the successive state estimation ('average' of all particles)
+    Data* estimates;
+    // function to compute the state estimation
+    ComputeEstimates computeEstimates;
     // OPTION2 : the state is chosen here. 
     if(strcmp(stateName,"XYPsi")){
         states = createStatesXYPsi(nParticles);
@@ -62,6 +80,8 @@ int main(int argc, char** argv){
         InitXYPsiParam iparam = mparam;
         moveParams = (void*) &mparam;
         initParams = (void*) &iparam;
+        estimates = createEstimatesXYPsi(nObs);
+        computeEstimates = computeEstimatesXYPsi;
     }
     else{
         printf("unkown state type");
@@ -77,11 +97,6 @@ int main(int argc, char** argv){
         printf("unkown resampling algorithm");
         exit(EXIT_FAILURE);
     }
-
-    // load inputs
-    magmap = createMagneticMap(magmapFilename);
-    Data* odometry = readCsv(odometryFilename,",");
-    Data* magobs = readCsv(observationFilename,",");
 
     // create output directory and base filename
     // mkdirParticles(outputDirname); // TODO supprimer (aussi de .c et .h) c'est le bash qui va creer le dossier (?)
@@ -105,12 +120,10 @@ int main(int argc, char** argv){
     Data* logweights = createData(1,nParticles);
     initParticles(logweights, states, initParams);
     resampling(logweights,states);
+    computeEstimates(states, logweights, t, estimates);
     writeParticles(states, logweights, outputDirname, t);
-    
-    
 
     // move particles for each time step
-    unsigned int nObs = getLen(magobs);
     for(t = 1; t<nObs; ++t)
         // odometry u is not used in initialization, therefore there is a shift
         // of minus one compared to the observation index t.
@@ -121,26 +134,25 @@ int main(int argc, char** argv){
         // resample
         resampling(logweights,states);
 
-        // TODO create some functions to convert between weight and logweights in logweight.h
-        // and see where it should go
-        // TODO compute and store estimate
-
+        // compute etimation of the state and write particles
+        computeEstimates(states, logweights, t, estimates);
         writeParticles(states, logweights, outputDirname, t); // TODO virer du timer
 
-    // TODO write estimates in csv file format
-    
+    // write estimates in csv file format
+    char estimatesFilename[1024];
+    snprintf(estimatesFilename, sizeof(estimatesFilename), "%sestimates.csv", outputDirname);
+    writeCsv(estimatesFilename, estimates, "# state estimation based on particles after each observation");
+
     destroyData(odometry);
     destroyData(magobs);
     destroyData(logweights);
     destroyData(states);
     destroyMagneticMap(magmap);
-    
 
     // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     // Compare the particle filter estimates with the ground thruth.
     // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     // TODO plutot à metre dans un autre executable ? qui lirait juste les estimates et la verité terrain
-    
 
     printf("-------the end-------\n");
     return EXIT_SUCCESS;
