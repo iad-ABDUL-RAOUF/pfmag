@@ -3,13 +3,9 @@
 #ifndef INITPARTICLESSTRATEGY_H
 #define INITPARTICLESSTRATEGY_H
 
-// InitParticlesStrategy define the interface of an initParticles
-// function. It allows you to switch between different implementation
-// in main.c without any code modification (in particular, without
-// dirty copying and pasting and/or commenting out blocks of code...)
 
-// see the commentary inside "resamplingStrategy.h" for
-// a detailed explanation
+// InitParticlesStrategy define the interface of an initParticles
+// function. See MoveParticlesStrategy.h for more explanation.
 typedef void (*InitParticlesStrategy)(Data* logweights, Data* states, void* params);
 
 #endif
