@@ -38,7 +38,7 @@ void writeCsv(const char* filename, const Data* data, const char* header){
     // add an end of line to the header and write it in the file
     char firstrow[sizeof(header)+1];
     snprintf(firstrow, sizeof(firstrow), "%s%s", header, "\n");
-    fprintf(file,firstrow);
+    fprintf(file, "%s", firstrow);
 
     // write data in the file
     unsigned int dim = getDim(data);
@@ -53,7 +53,7 @@ void writeCsv(const char* filename, const Data* data, const char* header){
             // replace the last ',' by an end of line
             row[strlen(row)-1] = '\n';
         }
-        fprintf(file,row);
+        fprintf(file, "%s", row);
     }
 
     fprintf(file,"\n");
