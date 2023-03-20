@@ -70,7 +70,7 @@ struct MagneticMap{
 MagneticMap* createMagneticMap(char* filename){
     
     // open file
-    FILE *file = fopen(filename,'r');
+    FILE *file = fopen(filename,"r");
     if (file == NULL){
         printf("createMagneticMap could not open file");
         exit(EXIT_FAILURE);

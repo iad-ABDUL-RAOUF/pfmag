@@ -10,7 +10,7 @@
 // simple (but limited) implementation based on :
 // https://stdin.top/posts/csv-in-c/
 Data* readCsv(const char* filename, const char* separator){
-    FILE *file = fopen(filename,'r');
+    FILE *file = fopen(filename,"r");
     if (file == NULL){
         printf("readCsv could not open file");
         exit(EXIT_FAILURE);
