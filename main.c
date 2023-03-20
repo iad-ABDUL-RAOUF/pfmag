@@ -88,6 +88,7 @@ int main(int argc, char** argv){
         exit(EXIT_FAILURE);
     }
 
+    // fucntion to resample particles
     ResamplingStrategy resampling;
     // PRELIMINARY,OPTION1 : the resampling strategy si choosen here
     if (strcmp(resamplingName,"noResampling") == 0){
@@ -104,9 +105,9 @@ int main(int argc, char** argv){
     // TODO set random seed (for reproductibility)
 
     // A good practice would be to assert that all inputs are sane. For instance
-    // one could check that nParticles is strictly positive, and that there is 
+    // one could check that nParticles is strictly positive, that there is
     // exactly one more magnetic observation data compared to the number of
-    // odometry data.
+    // odometry data, etc.
 
     // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     // Finally ! Everything is loaded. Particle filtering starts from here !
@@ -114,12 +115,14 @@ int main(int argc, char** argv){
 
     // initializes particles
     unsigned int t = 0; // time
-    obs = getVal(magobs, t); 
-    // logweights contains the logarithm of weights. It is advantageous because of
-    // numerical precision issues.
+    obs = getVal(magobs, t);
+    // logweights contains the logarithm of weights. It is advantageous because
+    // of numerical precision issues.
     Data* logweights = createData(1,nParticles);
     initParticles(logweights, states, initParams);
     resampling(logweights,states);
+    
+    // compute etimation of the state and write particles
     computeEstimates(states, logweights, t, estimates);
     writeParticles(states, logweights, outputDirname, t);
 
@@ -143,6 +146,8 @@ int main(int argc, char** argv){
     snprintf(estimatesFilename, sizeof(estimatesFilename), "%sestimates.csv", outputDirname);
     writeCsv(estimatesFilename, estimates, "# state estimation based on particles after each observation");
 
+    // clean up memory : every "create" or "malloc" should correspond to a
+    // "destroy" or a "free".
     destroyData(odometry);
     destroyData(magobs);
     destroyData(logweights);

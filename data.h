@@ -6,7 +6,7 @@
 // Notice that the struct Data is declared without it's member. the goal is to 
 // protect them. Users including data.h cannot mess up with Data. They can only
 // interact with it through the exposed functions.
-// Remarq : if you have an "incomplete type" bug it is because the user can only
+// Note : if you have an "incomplete type" bug it is because the user can only
 // handle Data pointers and not Data itself
 // Data data = ...; // is not allowed "incomplete type"
 // Data* data = ...; // is allowed
