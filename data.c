@@ -33,19 +33,19 @@ void destroyData(Data* data){
     free(data);
 }
 
-double* getVal(Data* data, unsigned int i){
+double* getVal(const Data* data, unsigned int i){
     return &data->vals[i*data->dim];
 }
 
-unsigned int getLen(Data* data){
+unsigned int getLen(const Data* data){
     return data->len;
 }
 
-unsigned int getDim(Data* data){
+unsigned int getDim(const Data* data){
     return data->dim;
 }
 
-void setVal(Data* data, unsigned int i, double* val){
+void setVal(Data* data, unsigned int i, const double* val){
     double* dataVal = getVal(data,i);
     unsigned int dim = getDim(data);
     for (unsigned int d = 0; d<dim; ++d){

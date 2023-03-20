@@ -16,7 +16,7 @@ void moveParticlesXYPsi(Data* logweights, StatesXYPsi* states, void* params){
     }
 }
 
-void moveParticleXYPsi(double* logweight, double* state, MoveXYPsiParam* params){
+void moveParticleXYPsi(double* logweight, double* state, const MoveXYPsiParam* params){
     double ux = odomGetUx(odom) + gaussian(0,params->std_ux);
     double uy = odomGetUy(odom) + gaussian(0,params->std_uy);
     double upsi = odomGetUpsi(odom) + gaussian(0,params->std_upsi);
@@ -44,7 +44,7 @@ void moveParticleXYPsi(double* logweight, double* state, MoveXYPsiParam* params)
     *logweight += logLikelihoodXYPsi(state, params);
 }
 
-double logLikelihoodXYPsi(double* state, MoveXYPsiParam* params){
+double logLikelihoodXYPsi(double* state, const MoveXYPsiParam* params){
     
     // Here we compare the observation made by the magnetometer with
     // the value of the magnetic map at the position of the given particles

@@ -12,6 +12,6 @@ typedef MoveXYPsiParam InitXYPsiParam;
 void initParticlesXYPsi(Data* logweights, StatesXYPsi* states, void* params);
 
 // initializes just one particle
-void initParticleXYPsi(double* logweight, double* state, InitXYPsiParam* params);
+void initParticleXYPsi(double* logweight, double* state, const InitXYPsiParam* params);
 
 #endif

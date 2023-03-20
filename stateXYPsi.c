@@ -4,15 +4,15 @@ StatesXYPsi* createStatesXYPsi(unsigned int len){
     StatesXYPsi* states = createData(3, len);
 }
 
-double XYPsiGetX(double* state){
+double XYPsiGetX(const double* state){
     return state[0];
 }
 
-double XYPsiGetY(double* state){
+double XYPsiGetY(const double* state){
     return state[1];
 }
 
-double XYPsiGetPsi(double* state){
+double XYPsiGetPsi(const double* state){
     return state[2];
 }
 

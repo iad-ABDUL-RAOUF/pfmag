@@ -1,13 +1,13 @@
 #include "odometry.h"
 
-double odomGetUx(double* odom){
+double odomGetUx(const double* odom){
     return odom[0];
 }
 
-double odomGetUy(double* odom){
+double odomGetUy(const double* odom){
     return odom[1];
 }
 
-double odomGetUpsi(double* odom){
+double odomGetUpsi(const double* odom){
     return odom[2];
 }

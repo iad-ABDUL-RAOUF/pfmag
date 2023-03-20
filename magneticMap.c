@@ -38,7 +38,7 @@ void readParametersFromFile(FILE* file, MagneticMap* magmap);
 void readMapData(FILE* file, MagneticMap* magmap);
 // indexer return the index of the element or nxstep*nystep if it is out
 // of bound
-unsigned int indexer(MagneticMap* magmap, int i, int j);
+unsigned int indexer(const MagneticMap* magmap, int i, int j);
 // interpolate scalar values
 double interpolate(
     double val11, double val12, double val21, double val22,
@@ -47,8 +47,12 @@ double interpolate(
 );
 // interpolate vectorial values
 void interpolateVector(
-    unsigned int dim, double* valout,
-    double* val11, double* val12, double* val21, double* val22,
+    unsigned int dim,
+    double* valout,
+    const double* val11,
+    const double* val12,
+    const double* val21,
+    const double* val22,
     double x1, double x2, double y1, double y2,
     double x, double y
 );
@@ -67,7 +71,7 @@ struct MagneticMap{
 
 // function implementations start here
 
-MagneticMap* createMagneticMap(char* filename){
+MagneticMap* createMagneticMap(const char* filename){
     
     // open file
     FILE *file = fopen(filename,"r");
@@ -99,7 +103,7 @@ void destroyMagneticMap(MagneticMap* magmap){
     free(magmap->magStd);
 }
 
-void predict(MagneticMap* magmap, double* position, double* mag, double* std_mag){
+void predict(const MagneticMap* magmap, const double* position, double* mag, double* std_mag){
     // Interpolate values known on a discret grid of position
     // This is in no way a realistic map model. It is designed specifically
     // for this course's project
@@ -141,7 +145,7 @@ void predict(MagneticMap* magmap, double* position, double* mag, double* std_mag
     );
 }
 
-void getMapShape(MagneticMap* magmap, Data* squareCenters, double* squareSideLength){
+void getMapShape(const MagneticMap* magmap, Data* squareCenters, double* squareSideLength){
     squareCenters = magmap->positionGrid;
     *squareSideLength = magmap->step;
 }
@@ -207,7 +211,7 @@ void readMapData(FILE* file, MagneticMap* magmap){
     destroyData(mapData);
 }
 
-unsigned int indexer(MagneticMap* magmap, int ix, int iy){
+unsigned int indexer(const MagneticMap* magmap, int ix, int iy){
     if (ix < 0 || (magmap->nxstep <= ix) || iy<0 ||(magmap->nystep <= iy)){
         return magmap->nxstep * magmap->nystep;  // out of bound output
     }
@@ -231,8 +235,12 @@ double interpolate(
 }
 
 void interpolateVector(
-    unsigned int dim, double* valout,
-    double* val11, double* val12, double* val21, double* val22,
+    unsigned int dim,
+    double* valout,
+    const double* val11,
+    const double* val12,
+    const double* val21,
+    const double* val22,
     double x1, double x2, double y1, double y2,
     double x, double y
 ){

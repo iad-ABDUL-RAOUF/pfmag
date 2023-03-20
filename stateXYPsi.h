@@ -12,9 +12,9 @@ StatesXYPsi* createStatesXYPsi(unsigned int len);
 
 // getters
 
-double XYPsiGetX(double* state);
-double XYPsiGetY(double* state);
-double XYPsiGetPsi(double* state);
+double XYPsiGetX(const double* state);
+double XYPsiGetY(const double* state);
+double XYPsiGetPsi(const double* state);
 
 // setters
 

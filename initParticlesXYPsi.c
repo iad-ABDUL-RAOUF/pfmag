@@ -19,7 +19,7 @@ void initParticlesXYPsi(Data* logweights, Data* states, void* params){
     }
 }
 
-void initParticleXYPsi(double* logweight, double* state, InitXYPsiParam* params){
+void initParticleXYPsi(double* logweight, double* state, const InitXYPsiParam* params){
 
     // Initializes a random particle position inside the map.
     // The map spatial shape is described by a collection of squares and therefore

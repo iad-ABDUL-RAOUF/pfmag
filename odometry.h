@@ -5,8 +5,8 @@
 
 // getters
 // (u is a standard notation for odometry input)
-double odomGetUx(double* odom);
-double odomGetUy(double* odom);
-double odomGetUpsi(double* odom);
+double odomGetUx(const double* odom);
+double odomGetUy(const double* odom);
+double odomGetUpsi(const double* odom);
 
 #endif

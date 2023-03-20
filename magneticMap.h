@@ -18,7 +18,7 @@ typedef struct MagneticMap MagneticMap;
 // # again a commentary
 // The remainder of the file contain the rest of the data :
 // px, py, mx, my, mz, std
-MagneticMap* createMagneticMap(char* filename);
+MagneticMap* createMagneticMap(const char* filename);
 
 void destroyMagneticMap(MagneticMap* magmap);
 
@@ -29,13 +29,13 @@ void destroyMagneticMap(MagneticMap* magmap);
 // there is always an error compared to reality). It is a simplified uncertainty
 // model that assumes mx,my and mz are i.i.d (otherwise you would have a 3x3
 // covariance matrix)
-void predict(MagneticMap* magmap, double* position, double* mag, double* std_mag);
+void predict(const MagneticMap* magmap, const double* position, double* mag, double* std_mag);
 
 // The shape of the area covered by the map is approximated as an union of squares
 // - "squareCenters" contain the centers x0,y0,x1,y1,... where xi,yi is the center of
 // the i-th sqare
 // - "squareSideLength" reference a scalar representing the side length of all squares.
-void getMapShape(MagneticMap* magmap, Data* squareCenters, double* squareSideLength);
+void getMapShape(const MagneticMap* magmap, Data* squareCenters, double* squareSideLength);
 
 
 

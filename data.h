@@ -23,14 +23,14 @@ void destroyData(Data* data);
 // getters
 
 // getVal return the reference of the first element of the i-th vector
-double* getVal(Data* data, unsigned int i);
-unsigned int getLen(Data* data);
-unsigned int getDim(Data* data);
+double* getVal(const Data* data, unsigned int i);
+unsigned int getLen(const Data* data);
+unsigned int getDim(const Data* data);
 
 // setters
 
 // copy the first "dim" double from "val" into the i-th vector of data
-void setVal(Data* data, unsigned int i, double* val);
+void setVal(Data* data, unsigned int i, const double* val);
 // set all component of the i-th vector of data to val 
 void setScalarVal(Data* data, unsigned int i, double val);
 
