@@ -2,6 +2,8 @@
 # https://opensource.com/article/18/8/what-how-makefile
 # This Makefile is mainly based on it. Clicks on the link above for a detailled
 # explanation.
+# And a Makefile cheatsheet is available here :
+# https://devhints.io/makefile
 
 .PHONY = all clean_object clean
 
@@ -9,7 +11,7 @@ CC = gcc
 
 LINKERFLAG = -lm -lgsl -lgslcblas
 
-# Just break SOURCES in multiples lines because it is too long to fit it on one line on my screen...
+# Just break SOURCES in multiples lines because it is too long to fit on my screen...
 SOURCES := csv.c data.c doNothingResampling.c estimates.c estimatesXYPsi.c initParticlesXYPsi.c
 SOURCES := ${SOURCES} magneticMap.c moveParticlesXYPsi.c odometry.c pfmag.c
 SOURCES := ${SOURCES} stateXYPsi.c weight.c writeParticles.c

@@ -14,11 +14,12 @@ typedef struct MoveXYPsiParam{
     // modeled as a gaussian. For simplicity, errors on mx,my,mz are assumed
     // to be independant and to have the same standard deviation (iid)
     double std_obs;
-    // standard deviation of the odometry random perturbation 
+    // standard deviation of the odometry random perturbation
     double std_ux;
     double std_uy;
     double std_upsi;
-    // magnetometer bias are assumed to be knonw here
+    // magnetometer bias are assumed to be knonw (otherwise you should put them
+    // in the state)
     double bx;
     double by;
     double bz;

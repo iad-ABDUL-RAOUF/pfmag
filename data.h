@@ -3,9 +3,12 @@
 
 // Data is a convenient structure to store and access N vectors of dimention D.
 
-// Notice that the struct Data is declared without it's member. the goal is to 
-// protect them. Users including data.h cannot mess up with Data. They can only
-// interact with it through the exposed functions.
+// Notice that the struct Data is declared without it's member. The goal is to
+// encapsulate them. Users including data.h cannot directly access to Data members.
+// They can only interact with it through the exposed functions. It allows you to
+// change the internal representation and implementation of Data and related fonctions.
+// As long as the provided function interface holds, users should not be impacted
+// by the modifications.
 // Note : if you have an "incomplete type" bug it is because the user can only
 // handle Data pointers and not Data itself
 // Data data = ...; // is not allowed "incomplete type"
@@ -22,7 +25,7 @@ void destroyData(Data* data);
 
 // getters
 
-// getVal return the reference of the first element of the i-th vector
+// getVal return the adress of the first element of the i-th vector
 double* getVal(const Data* data, unsigned int i);
 unsigned int getLen(const Data* data);
 unsigned int getDim(const Data* data);
