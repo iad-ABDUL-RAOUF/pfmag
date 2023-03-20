@@ -1,6 +1,7 @@
 #include "initParticlesXYPsi.h"
 #include "magneticMap.h"
 #include "random.h"
+#include <math.h>
 
 extern double* obs;
 extern MagneticMap* magmap;
