@@ -18,8 +18,9 @@ OBJECTS := $(SOURCES:%.c=%.o)
 
 all: pfmag
 
-# Compiling each object separately is more efficient. If it is already compiled
-# and up to date, this Makefile will not create it again.
+# Compiling each object separately is more efficient.
+# If an object is already compiled and up to date, this Makefile will not create
+# it again.
 %.o: %.c
 	${CC} -c $<
 
