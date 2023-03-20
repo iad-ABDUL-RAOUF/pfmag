@@ -4,7 +4,7 @@ It compiles but I did not tried to execute it yet. Some features are also missin
 
 Stay tuned for future updates.
 
-Also I will provide the list of important files to look at for each part of the project.
+Also I will provide the list of important files to look at for each part of the project. The main is in pfmag.c
 
 The simultaneous localisation and calibration part may be more difficult (but more interesting ?) than the resampling part. Choose your subject carefully...
 
