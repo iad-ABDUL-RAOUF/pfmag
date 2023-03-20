@@ -37,7 +37,7 @@ double* getVal(const Data* data, unsigned int i){
     return &data->vals[i*data->dim];
 }
 
-double* getVals(const Data* data, unsigned int i){
+double* getVals(const Data* data){
     return &data->vals[0];
 }
 
