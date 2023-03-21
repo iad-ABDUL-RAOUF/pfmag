@@ -8,6 +8,7 @@
 .PHONY = all clean_object clean
 
 CC = gcc
+CCFLAGS = -Wall
 
 LINKERFLAG = -lm -lgsl -lgslcblas
 
@@ -24,7 +25,7 @@ all: pfmag
 # If an object is already compiled and up to date, this Makefile will not create
 # it again.
 %.o: %.c
-	${CC} -c $<
+	${CC} ${CCFLAGS} -c $<
 
 pfmag: ${OBJECTS}
 	@echo "create executable "$@

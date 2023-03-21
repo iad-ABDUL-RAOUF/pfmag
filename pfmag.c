@@ -121,7 +121,7 @@ int main(int argc, char** argv){
     // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     // initializes particles
-    unsigned int t = 0; // time
+    unsigned int t = 0; // time iteration
     obs = getVal(magobs, t);
     // logweights contains the logarithm of weights. It is advantageous because
     // of numerical precision issues.
@@ -131,10 +131,10 @@ int main(int argc, char** argv){
     
     // compute etimation of the state and write particles
     computeEstimates(states, logweights, t, estimates);
-    writeParticles(states, logweights, outputDirname, t);
+    writeParticles(states, logweights, outputDirname, t); // TODO virer du timer
 
     // move particles for each time step
-    for(t = 1; t<nObs; ++t)
+    for(t = 1; t<nObs; ++t){
         // odometry u is not used in initialization, therefore there is a shift
         // of minus one compared to the observation index t.
         odom = getVal(odometry, t-1);
@@ -147,6 +147,7 @@ int main(int argc, char** argv){
         // compute etimation of the state and write particles
         computeEstimates(states, logweights, t, estimates);
         writeParticles(states, logweights, outputDirname, t); // TODO virer du timer
+    }
 
     // write estimates in csv file format
     char estimatesFilename[1024];

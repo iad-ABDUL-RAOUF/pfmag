@@ -2,6 +2,7 @@
 
 StatesXYPsi* createStatesXYPsi(unsigned int len){
     StatesXYPsi* states = createData(3, len);
+    return states;
 }
 
 double XYPsiGetX(const double* state){

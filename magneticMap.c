@@ -192,7 +192,6 @@ void readMapData(FILE* file, MagneticMap* magmap){
     }
 
     unsigned int lenMapData = getLen(mapData);
-    Data* positionGrid = createData(2,lenMapData);
     // fill in the rectangle map with values read from the input file
     for (unsigned int i = 0; i<lenMapData; ++i){
         double* inputval = getVal(mapData,i);
