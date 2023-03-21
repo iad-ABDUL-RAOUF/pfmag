@@ -12,12 +12,12 @@
 typedef struct MagneticMap MagneticMap;
 
 // expect a .magmap file with :
-// # a one line commentary
+// - a one line commentary
 // a second line with paramter values separated by comma :
-// xmin,ymin,step,nxstep,nystep
-// # again a commentary
+// - xmin,ymin,step,nxstep,nystep
+// - again a commentary
 // The remainder of the file contain the rest of the data :
-// px, py, mx, my, mz, std
+// - px, py, mx, my, mz, std
 MagneticMap* createMagneticMap(const char* filename);
 
 void destroyMagneticMap(MagneticMap* magmap);

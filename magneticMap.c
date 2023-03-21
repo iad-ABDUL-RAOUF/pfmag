@@ -211,7 +211,10 @@ void readMapData(FILE* file, MagneticMap* magmap){
 }
 
 unsigned int indexer(const MagneticMap* magmap, int ix, int iy){
-    if (ix < 0 || (magmap->nxstep <= (unsigned int)ix) || iy<0 ||(magmap->nystep <= (unsigned int)iy)){
+    if (ix < 0
+        || (magmap->nxstep <= (unsigned int)ix)
+        || iy<0
+        ||(magmap->nystep <= (unsigned int)iy)){
         return magmap->nxstep * magmap->nystep;  // out of bound output
     }
     else{
