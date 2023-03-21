@@ -1,6 +1,8 @@
 # WORK IN PROGRESS.
 
-It compiles but I did not tried to execute it yet. Some features are also missing. In order to test it I first need to create a dataset.
+It compiles but I did not tried to execute it yet. Some features are also missing. In order to test it, I first need to create a dataset. You will aslo need it.
+
+DO NOT TRY TO EXECUTE yet.
 
 Stay tuned for future updates.
 
