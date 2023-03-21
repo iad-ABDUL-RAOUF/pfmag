@@ -33,6 +33,10 @@ And if you only want to remove all ".o" files while keeping the executable :
 make clean_object
 ```
 
+# Usage
+
+TODO : comment executer (parametres...)
+
 # Which subject ?
 
 You all need to work on the preliminaries to get your particle filter working.
@@ -49,11 +53,11 @@ You can do a bit of several options if you want to.
 
 I feel that learning is more efficient when there is both a code model to look at and some parts to develop yourself. This is why I provided you with this (relatively long) codebase, instead of making you starting from scratch.
 
-However it is a lot to read at once, so you will find in the next sections what are the important file to look at to complete each part of the projects.
+However it is a lot to read at once. So you will find in the next section what are the important files to look at to complete each part of the project.
 
 # Important files
 
-The main is in pfmag.c. It is the entry point of the program and you should definitely take a look. It is cut into two parts : First, every input parameters and data are loaded. Then particle filtering is used to estimate the state (x,y,psi) iteratively.
+The main is in pfmag.c. It is the entry point of the program and you should definitely take a look. It is split into two parts : First, every input parameters and data are loaded. Then particle filtering is used to estimate the state (x,y,psi) iteratively.
 
 This project makes extensive use of list of vectors of dimention d. For instance all the state can be seen as a list of 'nParticles' elements of dimention 3. The weights are a list of 'nParticles' elements of dimention 1 and so on. For that a special container called 'Data' has been created and is used everywhere. Therefore you should look at 'data.h'.
 
@@ -63,24 +67,20 @@ To create your own resampling strategy, first, look at how the 'doNothingResampl
 
 Using 'gsl_ran_multinomial' from GSL, to generate samples folowing the multinomial distribution, can help you.
 
-To give you an idea, my own multinomialResampling.c is less than 40 lines of code. If you need much more it might means that you made a mistake somewhere. The hardest part is mainly to understand the codebase I gave you, which may seems quite consequent at first sight (Ask for help)
+To give you an idea, my own multinomialResampling.c is less than 40 lines of code. If you need much more it might means that you made a mistake somewhere. The hardest part is mainly to understand the codebase I gave you (ask for help).
 
 ## Option 1 : Resampling
 
-Same as preliminaries. With this subject you just keep on developing and testing more resampling strategy.
+Same as preliminaries. With this subject you just keep on developing and testing more resampling strategies.
 
-If your resampling strategy involves to take into account the states values (in addition to the weights as in classical resampling strategy), then you might want to look at stateXYPsi.h
+If your resampling strategy involves to take into account the states values (in addition to the weights as in a classic resampling strategy), then you might want to look at stateXYPsi.h
 
 ## Option 2 : Simultaneous localisation and calibration
 
-Here we are changing the states. It contains (x,y,psi,bx,by,bz) instead of just (x,y,psi). Look inside the main where the state is choosen and add the possibility of using another state.
+Here we are changing the state. It contains (x,y,psi,bx,by,bz) instead of just (x,y,psi). Look inside the main where the state is choosen and add the possibility of using another state.
 
 In new files, you will adapt stateXYPsi.h and .c to add the biais. initParticlesXYPsi.h and .c to initializes it for each particles and moveParticlesXYPsi.h and .c to update it. Finally estimatesXYPsi.h and .c can be adapted to also compute biais estimation from the particles states and weights.
 
 ## Option 3 (bonus) : graphical interface
 
-I am not that much experimented in graphical interfaces, but you will need to inspect the inputs and outputs of the main. Either open directly the input and output files to see what is inside or look at the writing functions declared in csv.h, write particles and estimatesXYPsi.h.
-
-# TODO
-
-indiquer : comment executer (parametres...)
+I am not that much experimented in graphical interfaces, but you will need to inspect the inputs and outputs of the main. Either open directly the input and output files to see what is inside or look at the writing functions declared in csv.h, writeParticles.h and estimatesXYPsi.h.
