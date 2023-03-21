@@ -1,14 +1,10 @@
 # WORK IN PROGRESS
 
-It compiles but I did not tried to execute it yet. Some features are also missing. In order to test it, I first need to create a dataset. You will aslo need it.
+It compiles but I did not tried to execute it yet. Some features are also missing. In order to test it, I first need to create a dataset. You will also need it.
 
 DO NOT TRY TO EXECUTE yet.
 
-Stay tuned for future updates.
-
-Also I will provide the list of important files to look at for each part of the project. The main is in pfmag.c
-
-The simultaneous localisation and calibration part may be more difficult (but more interesting ?) than the resampling part. Choose your subject carefully...
+Stay tuned for future updates. 
 
 # Dependencies
 
@@ -37,6 +33,54 @@ And if you only want to remove all ".o" files while keeping the executable :
 make clean_object
 ```
 
+# Which subject ?
+
+You all need to work on the preliminaries to get your particle filter working.
+
+Then you can choose. The simultaneous localisation and calibration is harder (but more interesting ?) than the resampling part. It involves to develop a larger quantity of functions. It also requires a better understanding of the particle filtering algorithm which is not stricly speaking what is evaluated in this IN104 course. I will be happy to help. For my own research project, I'm also curious on the results you might acheive.
+
+However, if you are a beginer in C, I strongly advise that you start by the resampling option.
+
+Option 3 (graphical interface) is for people not interested in either of the previous ones. However I never developped such an interface myself. You will be on your own on this one. To adress only if you are experienced in C.
+
+You can do a bit of several options if you want to.
+
+# Pedagogy
+
+I feel that learning is more efficient when there is both a code model to look at and some parts to develop yourself. This is why I provided you with this (relatively long) codebase, instead of making you starting from scratch.
+
+However it is a lot to read at once, so you will find in the next sections what are the important file to look at to complete each part of the projects.
+
+# Important files
+
+The main is in pfmag.c. It is the entry point of the program and you should definitely take a look. It is cut into two parts : First, every input parameters and data are loaded. Then particle filtering is used to estimate the state (x,y,psi) iteratively.
+
+This project makes extensive use of list of vectors of dimention d. For instance all the state can be seen as a list of 'nParticles' elements of dimention 3. The weights are a list of 'nParticles' elements of dimention 1 and so on. For that a special container called 'Data' has been created and is used everywhere. Therefore you should look at 'data.h'.
+
+## Preliminaries
+
+To create your own resampling strategy, first, look at how the 'doNothingResampling' is loaded in the main. And update the main to be able to use your 'multinomialResampling' instead. You may develop it in multinomialResampling.h and multinomialResampling.c. Again take inspiration on doNothingResampling.h and .c.
+
+Using 'gsl_ran_multinomial' from GSL, to generate samples folowing the multinomial distribution, can help you.
+
+To give you an idea, my own multinomialResampling.c is less than 40 lines of code. If you need much more it might means that you made a mistake somewhere. The hardest part is mainly to understand the codebase I gave you, which may seems quite consequent at first sight (Ask for help)
+
+## Option 1 : Resampling
+
+Same as preliminaries. With this subject you just keep on developing and testing more resampling strategy.
+
+If your resampling strategy involves to take into account the states values (in addition to the weights as in classical resampling strategy), then you might want to look at stateXYPsi.h
+
+## Option 2 : Simultaneous localisation and calibration
+
+Here we are changing the states. It contains (x,y,psi,bx,by,bz) instead of just (x,y,psi). Look inside the main where the state is choosen and add the possibility of using another state.
+
+In new files, you will adapt stateXYPsi.h and .c to add the biais. initParticlesXYPsi.h and .c to initializes it for each particles and moveParticlesXYPsi.h and .c to update it. Finally estimatesXYPsi.h and .c can be adapted to also compute biais estimation from the particles states and weights.
+
+## Option 3 (bonus) : graphical interface
+
+I am not that much experimented in graphical interfaces, but you will need to inspect the inputs and outputs of the main. Either open directly the input and output files to see what is inside or look at the writing functions declared in csv.h, write particles and estimatesXYPsi.h.
+
 # TODO
 
-indiquer : comment executer (parametres...), indiquer fichiers importants
+indiquer : comment executer (parametres...)
