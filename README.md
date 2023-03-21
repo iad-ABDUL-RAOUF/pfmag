@@ -1,4 +1,4 @@
-# WORK IN PROGRESS.
+# WORK IN PROGRESS
 
 It compiles but I did not tried to execute it yet. Some features are also missing. In order to test it, I first need to create a dataset. You will aslo need it.
 
@@ -21,7 +21,8 @@ sudo apt-get install libgsl-dev
 # Compilation
 
 I already created a Makefile for you, which should be updated everytime you add a new ".c" file.
-Open a terminal, go in the directory and type :
+
+To compile, open a terminal, go in the directory and type :
 ```shell
 make
 ```
@@ -38,4 +39,4 @@ make clean_object
 
 # TODO
 
-indiquer : comment executer (parametres...)
+indiquer : comment executer (parametres...), indiquer fichiers importants
