@@ -145,8 +145,8 @@ void predict(const MagneticMap* magmap, const double* position, double* mag, dou
     );
 }
 
-void getMapShape(const MagneticMap* magmap, Data* squareCenters, double* squareSideLength){
-    squareCenters = magmap->positionGrid;
+void getMapShape(const MagneticMap* magmap, Data** squareCenters, double* squareSideLength){
+    *squareCenters = magmap->positionGrid;
     *squareSideLength = magmap->step;
 }
 
@@ -211,11 +211,11 @@ void readMapData(FILE* file, MagneticMap* magmap){
 }
 
 unsigned int indexer(const MagneticMap* magmap, int ix, int iy){
-    if (ix < 0 || (magmap->nxstep <= ix) || iy<0 ||(magmap->nystep <= iy)){
+    if (ix < 0 || (magmap->nxstep <= (unsigned int)ix) || iy<0 ||(magmap->nystep <= (unsigned int)iy)){
         return magmap->nxstep * magmap->nystep;  // out of bound output
     }
     else{
-        return (unsigned int)(ix * magmap->nystep + iy);
+        return (ix * magmap->nystep + iy);
     }
 }
 

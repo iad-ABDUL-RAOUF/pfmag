@@ -49,7 +49,7 @@ void writeCsv(const char* filename, const Data* data, const char* header){
         for (unsigned int d=0; d<dim; ++d){
             char val[VALMAXCHAR] = "";
             int ret = snprintf(val, sizeof(val), "%f,", values[d]);
-            if(ret < 0 || sizeof(row) <= ret){
+            if(ret < 0 || sizeof(row) <= (unsigned int)ret){
                 printf("in writeCsv error while converting into string, or data dim is too large to fit all values in a row");
                 exit(EXIT_FAILURE);
             };

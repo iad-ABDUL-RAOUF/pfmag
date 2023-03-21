@@ -35,7 +35,7 @@ void predict(const MagneticMap* magmap, const double* position, double* mag, dou
 // - "squareCenters" contain the centers x0,y0,x1,y1,... where xi,yi is the center of
 // the i-th sqare
 // - "squareSideLength" reference a scalar representing the side length of all squares.
-void getMapShape(const MagneticMap* magmap, Data* squareCenters, double* squareSideLength);
+void getMapShape(const MagneticMap* magmap, Data** squareCenters, double* squareSideLength);
 
 
 

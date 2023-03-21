@@ -8,7 +8,7 @@
 .PHONY = all clean_object clean
 
 CC = gcc
-CCFLAGS = -Wall
+CCFLAGS = -Wall -Wextra
 
 LINKERFLAG = -lm -lgsl -lgslcblas
 

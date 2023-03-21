@@ -37,6 +37,11 @@ int main(int argc, char** argv){
     // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     printf("load parameters\n");
+    if (argc != 8){
+        printf("main called with wrong number of arguments");
+        exit(EXIT_FAILURE);
+    }
+
     // number of particle
     int nParticles = atoi(argv[1]);
     printf("nParticles = %d\n", nParticles);
@@ -152,7 +157,7 @@ int main(int argc, char** argv){
     // write estimates in csv file format
     char estimatesFilename[1024];
     int ret = snprintf(estimatesFilename, sizeof(estimatesFilename), "%sestimates.csv", outputDirname);
-    if(ret < 0 || sizeof(estimatesFilename) <= ret){
+    if(ret < 0 || sizeof(estimatesFilename) <= (unsigned int)ret){
         printf("in main, outputDirname is too long");
         exit(EXIT_FAILURE);
     };

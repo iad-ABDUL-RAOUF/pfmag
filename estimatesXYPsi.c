@@ -38,7 +38,7 @@ void computeEstimatesXYPsi(
     destroyData(weights);
 }
 
-double integrandMeanX(const double* state, void* param){
+double integrandMeanX(const double* state, void* param __attribute__((unused))){
     return XYPsiGetX(state);
 }
 double integrandVarX(const double* state, void* voidmX){
@@ -47,7 +47,7 @@ double integrandVarX(const double* state, void* voidmX){
     return (x-*mX)*(x-*mX);
 }
 
-double integrandMeanY(const double* state, void* param){
+double integrandMeanY(const double* state, void* param __attribute__((unused))){
     return XYPsiGetY(state);
 }
 double integrandVarY(const double* state, void* voidmY){
@@ -56,7 +56,7 @@ double integrandVarY(const double* state, void* voidmY){
     return (y-*mY)*(y-*mY);
 }
 
-double integrandMeanCosPsi(const double* state, void* param){
+double integrandMeanCosPsi(const double* state, void* param __attribute__((unused))){
     return cos(XYPsiGetPsi(state));
 }
 double integrandVarCosPsi(const double* state, void* voidmCosPsi){
@@ -65,7 +65,7 @@ double integrandVarCosPsi(const double* state, void* voidmCosPsi){
     return (cosPsi-*mCosPsi)*(cosPsi-*mCosPsi);
 }
 
-double integrandMeanSinPsi(const double* state, void* param){
+double integrandMeanSinPsi(const double* state, void* param __attribute__((unused))){
     return sin(XYPsiGetPsi(state));
 }
 

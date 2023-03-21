@@ -27,9 +27,9 @@ void initParticleXYPsi(double* logweight, double* state, const InitXYPsiParam* p
     // the initialization is done as follow:
     // - randomly select a square
     // - create a random position inside this square
-    Data* squareCenters = NULL;
+    Data* squareCenters;
     double sideLength;
-    getMapShape(magmap, squareCenters, &sideLength);
+    getMapShape(magmap, &squareCenters, &sideLength);
     int nSquare = getLen(squareCenters);
     unsigned int k = gsl_rng_uniform_int(randomGenerator, nSquare);
     double* square = getVal(squareCenters, k);
