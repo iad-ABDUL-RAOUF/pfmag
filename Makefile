@@ -19,7 +19,7 @@ SOURCES := ${SOURCES} stateXYPsi.c weight.c writeParticles.c
 
 OBJECTS := $(SOURCES:%.c=%.o)
 
-all: pfmag
+all: pfmag evaluatePfmag
 
 # Compiling each object separately is more efficient.
 # If an object is already compiled and up to date, this Makefile will not create
@@ -28,6 +28,10 @@ all: pfmag
 	${CC} ${CCFLAGS} -c $<
 
 pfmag: ${OBJECTS}
+	@echo "create executable "$@
+	${CC} $^ -o $@ ${LINKERFLAG}
+
+evaluatePfmag: csv.o data.o evaluatePfmag.o
 	@echo "create executable "$@
 	${CC} $^ -o $@ ${LINKERFLAG}
 

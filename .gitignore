@@ -4,6 +4,7 @@
 # compilation files
 *.o
 pfmag
+evaluatePfmag
 
 # mainbrouillon stuff
 a.out
