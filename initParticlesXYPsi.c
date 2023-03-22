@@ -1,11 +1,9 @@
 #include "initParticlesXYPsi.h"
 #include "magneticMap.h"
 #include "random.h"
+#include "globalInputs.h"
 #include <gsl/gsl_randist.h>
 #include <math.h>
-
-extern double* obs;
-extern MagneticMap* magmap;
 
 void initParticlesXYPsi(Data* logweights, Data* states, void* params){
     // cast params from void* to its true type

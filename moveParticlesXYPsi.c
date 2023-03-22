@@ -1,6 +1,7 @@
 #include "moveParticlesXYPsi.h"
 #include "random.h"
 #include "odometry.h"
+#include "globalInputs.h"
 #include <gsl/gsl_randist.h>
 #include <math.h>
 

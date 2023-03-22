@@ -5,10 +5,6 @@
 #ifndef MOVEPARTICLESXYPSI_H
 #define MOVEPARTICLESXYPSI_H
 
-extern double* odom;
-extern double* obs;
-extern MagneticMap* magmap;
-
 typedef struct MoveXYPsiParam{
     // standard deviation of the odometry magnetometer measurments error
     // modeled as a gaussian. For simplicity, errors on mx,my,mz are assumed

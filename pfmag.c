@@ -12,13 +12,16 @@
 #include "magneticMap.h"
 #include "csv.h"
 #include "data.h"
+
+// global variable declarations
 #include "random.h"
+#include "globalInputs.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-// Some global variables used by initParticle and by moveParticle functions...
+// global variable definitions
 
 // Input odometry
 double* odom;
