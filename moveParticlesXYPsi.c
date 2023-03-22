@@ -63,8 +63,8 @@ double logLikelihoodXYPsi(double* state, const MoveXYPsiParam* params){
     // Therefore, to compare them we need to put them in the same frame (here we choose
     // the sensor frame).
     double psi = XYPsiGetPsi(state);
-    double mx = cos(psi)*mapMagVec[0] - sin(psi)*mapMagVec[1];
-    double my = sin(psi)*mapMagVec[0] + cos(psi)*mapMagVec[1];
+    double mx = cos(psi)*mapMagVec[0] + sin(psi)*mapMagVec[1];
+    double my = -sin(psi)*mapMagVec[0] + cos(psi)*mapMagVec[1];
     double mz = mapMagVec[2];
 
     // also measurement are corrupted by a bias b = (bx,by,bz).
