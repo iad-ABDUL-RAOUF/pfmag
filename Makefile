@@ -37,8 +37,11 @@ evaluatePfmag: csv.o data.o evaluatePfmag.o
 
 clean_object:
 	@echo "Cleaning objects"
-	rm *.o
+	rm *.o || true
+# "rm myfile" fails when the file does not already exists. It breaks the whole makefile
+# "rm myfile || true" allow to keep going even in those situations
 
 clean: clean_object
 	@echo "Cleaning binaries"
-	rm pfmag
+	rm pfmag || true
+	rm evaluatePfmag || true
