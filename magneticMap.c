@@ -84,6 +84,10 @@ MagneticMap* createMagneticMap(const char* filename){
     char row[LINEMAXCHAR];
     fgets(row, LINEMAXCHAR, file);
     MagneticMap* magmap = malloc(sizeof(MagneticMap));
+    if (magmap==NULL){
+        printf("function createMagneticMap failed to allocate magmap\n");
+        exit(EXIT_FAILURE);
+    }
 
     // read the parameter line
     readParametersFromFile(file, magmap);
