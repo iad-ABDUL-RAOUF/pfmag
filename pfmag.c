@@ -41,7 +41,7 @@ int main(int argc, char** argv){
     
     printf("load parameters\n");
     if (argc != 8){
-        printf("main called with wrong number of arguments");
+        printf("main called with wrong number of arguments\n");
         exit(EXIT_FAILURE);
     }
 
@@ -96,7 +96,7 @@ int main(int argc, char** argv){
         computeEstimates = computeEstimatesXYPsi;
     }
     else{
-        printf("unkown state type");
+        printf("unkown state type\n");
         exit(EXIT_FAILURE);
     }
 
@@ -107,7 +107,7 @@ int main(int argc, char** argv){
         resampling = doNothingResampling;
     }
     else{
-        printf("unkown resampling algorithm");
+        printf("unkown resampling algorithm\n");
         exit(EXIT_FAILURE);
     }
 
@@ -158,7 +158,7 @@ int main(int argc, char** argv){
     char estimatesFilename[1024];
     int ret = snprintf(estimatesFilename, sizeof(estimatesFilename), "%sestimates.csv", outputDirname);
     if(ret < 0 || sizeof(estimatesFilename) <= (unsigned int)ret){
-        printf("in main, outputDirname is too long");
+        printf("in main, outputDirname is too long\n");
         exit(EXIT_FAILURE);
     };
     writeCsv(estimatesFilename, estimates, "# state estimation based on particles after each observation");

@@ -9,7 +9,7 @@
 int main(int argc, char** argv){
     // read paramters
     if (argc!=3){
-        printf("in evaluatePfmag.c, wrong number of inputs");
+        printf("in evaluatePfmag.c, wrong number of inputs\n");
         exit(EXIT_FAILURE);
     }
     char* estimatesFilename = argv[1];
@@ -23,7 +23,7 @@ int main(int argc, char** argv){
     unsigned int nEstimates = getLen(estimates);
     unsigned int nGt = getLen(groundtruth);
     if (nEstimates != nGt){
-        printf("ground truth trajectory has a different number of states than the estimated trajectory : wrong files ?");
+        printf("ground truth trajectory has a different number of states than the estimated trajectory : wrong files ?\n");
         exit(EXIT_FAILURE);
     }
 

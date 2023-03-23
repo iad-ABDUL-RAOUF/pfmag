@@ -18,11 +18,11 @@ void computeEstimatesXYPsi(
     Data* weights = createNormalisedWeights(logweights);
     unsigned int dim = getDim(estimates);
     if (dim != 8){
-        printf("estimate has a wrong dimention. Expects 8 : mX, vX, mY, vY, mCosPsi, vCosPsi, mSinPsi, vSinPsi");
+        printf("estimate has a wrong dimention. Expects 8 : mX, vX, mY, vY, mCosPsi, vCosPsi, mSinPsi, vSinPsi\n");
         exit(EXIT_FAILURE);
     }
     if (currentIteration >= getLen(estimates)){
-        printf("currentIteration exceeds estimate length");
+        printf("currentIteration exceeds estimate length\n");
         exit(EXIT_FAILURE);
     }
     double currentEstimate[dim];

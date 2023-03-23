@@ -12,7 +12,7 @@
 Data* readCsv(const char* filename, const char* separator){
     FILE *file = fopen(filename,"r");
     if (file == NULL){
-        printf("readCsv could not open file");
+        printf("readCsv could not open file\n");
         exit(EXIT_FAILURE);
     }
 
@@ -31,7 +31,7 @@ void writeCsv(const char* filename, const Data* data, const char* header){
     // open file
     FILE* file = fopen(filename,"w");
     if (file == NULL){
-        printf("writeCsv could not open file");
+        printf("writeCsv could not open file\n");
         exit(EXIT_FAILURE);
     }
 
@@ -50,7 +50,7 @@ void writeCsv(const char* filename, const Data* data, const char* header){
             char val[VALMAXCHAR] = "";
             int ret = snprintf(val, sizeof(val), "%f,", values[d]);
             if(ret < 0 || sizeof(row) <= (unsigned int)ret){
-                printf("in writeCsv error while converting into string, or data dim is too large to fit all values in a row");
+                printf("in writeCsv error while converting into string, or data dim is too large to fit all values in a row\n");
                 exit(EXIT_FAILURE);
             };
             strcat(row,val);
@@ -94,7 +94,7 @@ Data* readCsvFile(FILE* file, const char* separator){
         unsigned int nvals = getNValues(row, separator);
         // skip empty lines and test that each line has the same number of element
         if (nvals!=dim && nvals==0){
-            printf("csv file has lines of unequal length");
+            printf("csv file has lines of unequal length\n");
             exit(EXIT_FAILURE);
         }else if(nvals==dim){
             parseRow(row, separator, values);

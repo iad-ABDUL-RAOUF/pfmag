@@ -15,14 +15,14 @@ struct Data{
 Data* createData(unsigned int dim, unsigned int len){
     Data* data = malloc(sizeof(Data));
     if (data==NULL){
-        printf("function createData failed to allocate data");
+        printf("function createData failed to allocate data\n");
         exit(EXIT_FAILURE);
     }
     data->dim = dim;
     data->len = len;
     data->vals = malloc(dim*len*sizeof(double));
     if (data->vals==NULL){
-        printf("function createData failed to allocate data->vals");
+        printf("function createData failed to allocate data->vals\n");
         exit(EXIT_FAILURE);
     }
     return data;
