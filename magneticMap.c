@@ -73,7 +73,13 @@ struct MagneticMap{
 
 MagneticMap* createMagneticMap(const char* filename){
     
-    // open file
+    MagneticMap* magmap = malloc(sizeof(MagneticMap));
+    if (magmap==NULL){
+        printf("function createMagneticMap failed to allocate magmap\n");
+        exit(EXIT_FAILURE);
+    }
+    
+    // open file to fill in magmap
     FILE *file = fopen(filename,"r");
     if (file == NULL){
         printf("createMagneticMap could not open file\n");
@@ -83,11 +89,6 @@ MagneticMap* createMagneticMap(const char* filename){
     // skip the first line (assumes it is header commentary)
     char row[LINEMAXCHAR];
     fgets(row, LINEMAXCHAR, file);
-    MagneticMap* magmap = malloc(sizeof(MagneticMap));
-    if (magmap==NULL){
-        printf("function createMagneticMap failed to allocate magmap\n");
-        exit(EXIT_FAILURE);
-    }
 
     // read the parameter line
     readParametersFromFile(file, magmap);
