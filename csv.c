@@ -36,7 +36,7 @@ void writeCsv(const char* filename, const Data* data, const char* header){
     }
 
     // add an end of line to the header and write it in the file
-    char firstrow[sizeof(header)+1];
+    char firstrow[LINEMAXCHAR];
     snprintf(firstrow, sizeof(firstrow), "%s%s", header, "\n");
     fprintf(file, "%s", firstrow);
 
@@ -108,7 +108,7 @@ void parseRow(const char* row, const char* separator, double* values){
     // tokenizes each line (i.e. parse them taking into account the
     // separator)
     // start by coping row because strtok input is not const
-    char rowcopy[sizeof(row)];
+    char rowcopy[LINEMAXCHAR];
     strcpy(rowcopy,row); 
     unsigned int i = 0;
     char *token = strtok(rowcopy, separator);
@@ -120,7 +120,7 @@ void parseRow(const char* row, const char* separator, double* values){
 }
 
 unsigned int getNValues(const char* row, const char* separator){
-    char rowcopy[sizeof(row)];
+    char rowcopy[LINEMAXCHAR];
     strcpy(rowcopy,row); 
     unsigned int i = 0;
     char *token = strtok(rowcopy, separator);
