@@ -14,6 +14,4 @@ void writeParticles(
     unsigned int iteration
 );
 
-// void mkdirParticles(const char* rootDirname); // TODO remove
-
 #endif

@@ -27,9 +27,3 @@ void writeParticles(const Data* states, const Data* logweights, const char* root
     writeCsv(wheightsFilename, weights, "# weights at a given timestep");
     destroyData(weights);
 }
-
-// void mkdirParticles(const char* rootDirname){
-//     char particlesDirname[FILENAMEMAXCHAR];
-//     snprintf(particlesDirname, sizeof(particlesDirname), "%s%s",rootDirname, SUBDIR);
-//     // TODO mkdir
-// } // TODO remove

@@ -111,9 +111,6 @@ int main(int argc, char** argv){
         exit(EXIT_FAILURE);
     }
 
-    // create output directory and base filename
-    // mkdirParticles(outputDirname); // TODO supprimer (aussi de .c et .h) c'est le bash qui va creer le dossier (?)
-
     // create the random number generator
     randomGenerator = gsl_rng_alloc(gsl_rng_default);
     // set always the same seed for reproductibility (better for debuging)
