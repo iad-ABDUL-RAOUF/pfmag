@@ -78,7 +78,8 @@ Data* readCsvFile(FILE* file, const char* separator){
         data = createData(dim,0);
     }
     else{
-        unsigned int nline = getNLine(file);
+        // +1 because first line already read above 'if(fgets(...))'
+        unsigned int nline = getNLine(file)+1;
         dim = getNValues(row, separator);
         data = createData(dim,nline);
         double values[dim]; 
