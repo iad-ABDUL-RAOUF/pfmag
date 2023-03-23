@@ -19,7 +19,7 @@ Data* createData(unsigned int dim, unsigned int len){
         exit(EXIT_FAILURE);
     }
     data->dim = dim;
-    data->dim = len;
+    data->len = len;
     data->vals = malloc(dim*len*sizeof(double));
     if (data->vals==NULL){
         printf("function createData failed to allocate data->vals");
