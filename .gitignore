@@ -8,4 +8,7 @@ evaluatePfmag
 
 # mainbrouillon stuff
 a.out
-mainbrouillon*.c
+mainbrouillon*
+
+# python
+__pycache__
