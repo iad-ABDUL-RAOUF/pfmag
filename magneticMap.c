@@ -76,7 +76,7 @@ MagneticMap* createMagneticMap(const char* filename){
     // open file
     FILE *file = fopen(filename,"r");
     if (file == NULL){
-        printf("createMagneticMap could not open file");
+        printf("createMagneticMap could not open file\n");
         exit(EXIT_FAILURE);
     }
 
@@ -153,12 +153,12 @@ void getMapShape(const MagneticMap* magmap, Data** squareCenters, double* square
 void readParametersFromFile(FILE* file, MagneticMap* magmap){
     char row[LINEMAXCHAR];
     if(fgets(row, LINEMAXCHAR, file) == NULL){
-        printf("readParametersFromFile found no parameters in file");
+        printf("readParametersFromFile found no parameters in file\n");
         exit(EXIT_FAILURE);
     }
     unsigned int dim = getNValues(row, ",");
     if(dim != 5){
-        printf("readParametersFromFile found a wrong number of element in row");
+        printf("readParametersFromFile found a wrong number of element in row\n");
         exit(EXIT_FAILURE);
     }
     double values[dim]; 
@@ -173,7 +173,7 @@ void readParametersFromFile(FILE* file, MagneticMap* magmap){
 void readMapData(FILE* file, MagneticMap* magmap){
     Data* mapData = readCsvFile(file, ",");
     if (getDim(mapData) != 6){
-        printf("readMapData found a wrong number of element by row");
+        printf("readMapData found a wrong number of element by row\n");
         exit(EXIT_FAILURE);
     }
     
