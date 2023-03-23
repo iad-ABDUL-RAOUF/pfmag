@@ -172,7 +172,7 @@ void readParametersFromFile(FILE* file, MagneticMap* magmap){
 
 void readMapData(FILE* file, MagneticMap* magmap){
     Data* mapData = readCsvFile(file, ",");
-    if (getDim(mapData) != 7){
+    if (getDim(mapData) != 6){
         printf("readMapData found a wrong number of element by row");
         exit(EXIT_FAILURE);
     }
@@ -192,6 +192,7 @@ void readMapData(FILE* file, MagneticMap* magmap){
     }
 
     unsigned int lenMapData = getLen(mapData);
+    magmap->positionGrid = createData(2, lenMapData);
     // fill in the rectangle map with values read from the input file
     for (unsigned int i = 0; i<lenMapData; ++i){
         double* inputval = getVal(mapData,i);
