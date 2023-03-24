@@ -158,7 +158,7 @@ int main(int argc, char** argv){
     char estimatesFilename[1024];
     int ret = snprintf(estimatesFilename, sizeof(estimatesFilename), "%sestimates.csv", outputDirname);
     if(ret < 0 || sizeof(estimatesFilename) <= (unsigned int)ret){
-        printf("in main, outputDirname is too long\n");
+        printf("in main, error while converting into string or outputDirname is be too long\n");
         exit(EXIT_FAILURE);
     };
     writeCsv(estimatesFilename, estimates, "# state estimation based on particles after each observation");

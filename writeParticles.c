@@ -11,7 +11,7 @@ void writeParticles(const Data* states, const Data* logweights, const char* root
     char statesFilename[FILENAMEMAXCHAR];
     double ret = snprintf(statesFilename, sizeof(statesFilename), "%s%sstates%d.csv", rootDirname, SUBDIR, iteration);
     if(ret < 0 || sizeof(statesFilename) <= ret){
-        printf("in writeParticles, statesFilename is too long\n");
+        printf("in writeParticles error while converting into string or statesFilename is too long\n");
         exit(EXIT_FAILURE);
     };
     writeCsv(statesFilename, states, "# particle states line by line at a given timestep");
