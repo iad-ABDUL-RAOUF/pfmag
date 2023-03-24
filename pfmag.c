@@ -55,6 +55,7 @@ int main(int argc, char** argv){
     char* resamplingName = argv[6];
     // output directory name ending by '/'
     char* outputDirname = argv[7];
+    int seed = atoi(argv[8]);
     // There is a lot of input variables here, you might want to
     // load them by other means (e.g. from configuration file)
 
@@ -114,7 +115,7 @@ int main(int argc, char** argv){
     // create the random number generator
     randomGenerator = gsl_rng_alloc(gsl_rng_default);
     // set always the same seed for reproductibility (better for debuging)
-    gsl_rng_set(randomGenerator, 123456789);
+    gsl_rng_set(randomGenerator, seed);
 
     // A good practice would be to assert that all inputs are sane. For instance
     // one could check that nParticles is strictly positive, that there is
