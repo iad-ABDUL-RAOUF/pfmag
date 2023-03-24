@@ -61,8 +61,6 @@ void writeCsv(const char* filename, const Data* data, const char* header){
         }
         fprintf(file, "%s", row);
     }
-
-    fprintf(file,"\n");
     fclose(file);
 }
 
@@ -93,7 +91,7 @@ Data* readCsvFile(FILE* file, const char* separator){
         double values[dim]; 
         unsigned int nvals = getNValues(row, separator);
         // skip empty lines and test that each line has the same number of element
-        if (nvals!=dim && nvals==0){
+        if (nvals!=dim){
             printf("csv file has lines of unequal length\n");
             exit(EXIT_FAILURE);
         }else if(nvals==dim){
