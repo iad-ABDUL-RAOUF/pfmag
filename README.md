@@ -14,6 +14,8 @@ This code depend on the GNU Scientific Library (GSL) for random number generatio
 sudo apt-get install libgsl-dev
 ```
 
+If you want to plot the particles, I gave you my python script for that. It depends on TODO. However the code works just fine without it (it's a C project after all, not a python one).
+
 # Compilation
 
 I already created a Makefile for you, which should be updated everytime you add a new ".c" file.
@@ -36,6 +38,25 @@ make clean_object
 # Usage
 
 TODO : comment executer (parametres...)
+
+
+In details, the compilation with make yields two executables : pfmag and evaluatePfmag. The first one run the particle filter whereas evaluatePfmag compare its output against the true trajectory to compute localisation errors.
+
+```shell
+./pfmag TODO parameters
+```
+with TODO explain parameters. TOOD dire qu'il doit y avoir un dossier partiules quelque part (ou alors ajouter un param et laisser libre le choix du dossier).
+
+```shell
+./evaluatePfmag TODO parameters
+```
+with TODO explain paramters
+
+If you use linux, you can directly use the bash script run.bash. Open it, change the filenames to match your computer path and run
+```shell
+source run.bash
+```
+It will launch automatically everything for you
 
 # Which subject ?
 
