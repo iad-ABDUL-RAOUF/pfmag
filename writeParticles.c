@@ -14,7 +14,7 @@ void writeParticles(const Data* states, const Data* logweights, const char* root
         printf("in writeParticles error while converting into string or statesFilename is too long\n");
         exit(EXIT_FAILURE);
     };
-    writeCsv(statesFilename, states, "# particle states line by line at a given timestep");
+    writeCsv(statesFilename, states, "# particle states");
 
     // write weights
     char wheightsFilename[FILENAMEMAXCHAR];
@@ -24,6 +24,6 @@ void writeParticles(const Data* states, const Data* logweights, const char* root
         exit(EXIT_FAILURE);
     };
     Data* weights = createNormalisedWeights(logweights);
-    writeCsv(wheightsFilename, weights, "# weights at a given timestep");
+    writeCsv(wheightsFilename, weights, "# particle weights");
     destroyData(weights);
 }
