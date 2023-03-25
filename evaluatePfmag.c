@@ -7,15 +7,19 @@
 
 // Evaluate the estimates computed from the particle filtering against the true poses (ground truth)
 int main(int argc, char** argv){
+    printf("-------in evaluatePfmag-------\n");
     // read paramters
     if (argc!=3){
         printf("in evaluatePfmag.c, wrong number of inputs\n");
         exit(EXIT_FAILURE);
     }
     char* estimatesFilename = argv[1];
+    printf("estimatesFilename = %s\n", estimatesFilename);
     char* groundtruthFilename = argv[2];
+    printf("groundtruthFilename = %s\n", groundtruthFilename);
 
     // load inputs
+    printf("load inputs\n");
     Data* estimates = readCsv(estimatesFilename,",");
     Data* groundtruth = readCsv(groundtruthFilename,",");
 
@@ -27,6 +31,7 @@ int main(int argc, char** argv){
         exit(EXIT_FAILURE);
     }
 
+    printf("compare ground truth with estimates\n");
     // get final estimates
     double meanX = getVal(estimates,nEstimates-1)[0];
     double varX = getVal(estimates,nEstimates-1)[1];
@@ -50,18 +55,18 @@ int main(int argc, char** argv){
     if (varX < 1.0 && varY < 1.0){
         hasConverged = true;
     }
-    printf("convergence (no:0, yes:1) : %d", hasConverged); // O means no convergence, 1 means convergence
+    printf("convergence (no:0, yes:1) : %d\n", hasConverged); // O means no convergence, 1 means convergence
 
     // compute and print errors
     double diffX = meanX-trueX;
     double diffY = meanY-trueY;
-    printf("final position error : %f (meter)", sqrt(diffX*diffX + diffY*diffY));
-    printf("final orientation error : %f (degrees)", (estimatedPsi-truePsi)*180/M_PI);
+    printf("final position error : %f (meter)\n", sqrt(diffX*diffX + diffY*diffY));
+    printf("final orientation error : %f (degrees)\n", (estimatedPsi-truePsi)*180/M_PI);
     
     // Beware that it is possible to get a convergence but also a large error.
     // The filter can converge toward a wrong position and orientation.
     // Actually, if the error is big, it is better if the filter did not
     // converged, so the user knows it cannot trust the output.
-
+    printf("-------the end-------\n");
     return EXIT_SUCCESS;
 }

@@ -30,7 +30,7 @@ def readCsv(filename, delimiter = ',', nlinetoskip = 1):
 
 def plot2Ddiscretmap(ax,fig,x,y,mag,alpha=1):
     magnorm = np.linalg.norm(mag, axis=1)
-    print(round(np.min(magnorm),1), "uT <= |mag| <= ", round(np.max(magnorm),1), "uT")
+    # print(round(np.min(magnorm),1), "uT <= |mag| <= ", round(np.max(magnorm),1), "uT")
     cmapname = "viridis"
     clrnorm = clr.Normalize(vmin=10, vmax=90)
     a = ax.scatter(
@@ -56,11 +56,17 @@ if __name__ == "__main__":
     plt.close('all')
     plt.ioff()
     # plt.ion()
-
+    
+    print("-------in plotParticles.py-------")
+    
     #%% load paramters
+    print("-------load inputs-------")
     trajectoryGtFilename = sys.argv[1] # TODO command line
+    print("trajectoryGtFilename : " + trajectoryGtFilename)
     magmapFilename = sys.argv[2] # TODO command line
+    print("magmapFilename : " + trajectoryGtFilename)
     pfoutputdir = sys.argv[3] # TODO command line
+    print("pfoutputdir : " + trajectoryGtFilename)
 
     estimatesfn = pfoutputdir + "estimates.csv"
     particlesdir = pfoutputdir
@@ -102,12 +108,14 @@ if __name__ == "__main__":
 
     #%% plot particles
     # if statesfnlist is non empty, it means particle csv are available, so we can plot particles
+    print("plot particles")
     if statesfnlist:
         assert len(statesfnlist)==len(weightsfnlist), "not the smae number of particles and weights csv"
         assert len(statesfnlist)==estimates.shape[0], "error, each estimate should meet a csv files containing particles values"
         assert estimates.shape[0]==trajectoryGt.shape[0], "error, not the same number of estimates and groundtruth position"
         k = 0
         for sfn, wfn in zip(statesfnlist,weightsfnlist):
+            print("plot iteration " + str(k))
             states = readCsv(sfn, delimiter=',',nlinetoskip=1)
             weights = readCsv(sfn, delimiter=',',nlinetoskip=1)
             px = states[:,0]
@@ -124,7 +132,7 @@ if __name__ == "__main__":
             ax.axis(xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax)
             ax.set(title="particles at iteration %d"%k)
             ax.legend()
-            filename = particlesdir + "particlesPos" + str(k)
+            filename = particlesdir + "particlesXY" + str(k)
             savePng(filename, fig)
             plt.close(fig)
             
@@ -145,6 +153,7 @@ if __name__ == "__main__":
             plt.close(fig)
             
             k+=1
+    print("-------the end-------")
 
     
     

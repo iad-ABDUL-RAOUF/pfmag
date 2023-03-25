@@ -45,21 +45,27 @@ int main(int argc, char** argv){
         exit(EXIT_FAILURE);
     }
 
-    // number of particle
+    // read and print parameters
     int nParticles = atoi(argv[1]);
     printf("nParticles = %d\n", nParticles);
     char* odometryFilename = argv[2];
+    printf("odometryFilename = %s\n", odometryFilename);
     char* observationFilename = argv[3];
+    printf("observationFilename = %s\n", observationFilename);
     char* magmapFilename = argv[4];
+    printf("magmapFilename = %s\n", magmapFilename);
     char* stateName = argv[5];
+    printf("stateName = %s\n", stateName);
     char* resamplingName = argv[6];
-    // output directory name ending by '/'
+    printf("resamplingName = %s\n", resamplingName);
     char* outputDirname = argv[7];
+    printf("outputDirname = %s\n", outputDirname);
     int seed = atoi(argv[8]);
+    printf("seed = %d\n", seed);
     // There is a lot of input variables here, you might want to
     // load them by other means (e.g. from configuration file)
 
-    // load inputs
+    // load input dataset
     magmap = createMagneticMap(magmapFilename);
     Data* odometry = readCsv(odometryFilename,",");
     Data* magobs = readCsv(observationFilename,",");
@@ -97,7 +103,7 @@ int main(int argc, char** argv){
         computeEstimates = computeEstimatesXYPsi;
     }
     else{
-        printf("unkown state type\n");
+        printf("unkown state type : %s\n", stateName);
         exit(EXIT_FAILURE);
     }
 
@@ -108,7 +114,7 @@ int main(int argc, char** argv){
         resampling = doNothingResampling;
     }
     else{
-        printf("unkown resampling algorithm\n");
+        printf("unkown resampling algorithm : %s\n", resamplingName);
         exit(EXIT_FAILURE);
     }
 
@@ -126,6 +132,7 @@ int main(int argc, char** argv){
     // Finally ! Everything is loaded. Particle filtering starts from here !
     // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+    printf("start the particle filter\n");
     // initializes particles
     unsigned int t = 0; // time iteration
     obs = getVal(magobs, t);
