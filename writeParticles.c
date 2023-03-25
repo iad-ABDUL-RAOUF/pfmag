@@ -6,10 +6,10 @@
 #define FILENAMEMAXCHAR 1024
 #define SUBDIR "particles/"
 
-void writeParticles(const Data* states, const Data* logweights, const char* rootDirname, unsigned int iteration){
+void writeParticles(const Data* states, const Data* logweights, const char* dirname, unsigned int iteration){
     // write states
     char statesFilename[FILENAMEMAXCHAR];
-    double ret = snprintf(statesFilename, sizeof(statesFilename), "%s%sstates%d.csv", rootDirname, SUBDIR, iteration);
+    double ret = snprintf(statesFilename, sizeof(statesFilename), "%sstates%d.csv", dirname, iteration);
     if(ret < 0 || sizeof(statesFilename) <= ret){
         printf("in writeParticles error while converting into string or statesFilename is too long\n");
         exit(EXIT_FAILURE);
@@ -18,7 +18,7 @@ void writeParticles(const Data* states, const Data* logweights, const char* root
 
     // write weights
     char wheightsFilename[FILENAMEMAXCHAR];
-    ret = snprintf(wheightsFilename, sizeof(statesFilename), "%s%sweights%d.csv", rootDirname, SUBDIR, iteration);
+    ret = snprintf(wheightsFilename, sizeof(statesFilename), "%sweights%d.csv", dirname, iteration);
     if(ret < 0 || sizeof(statesFilename) <= ret){
         printf("in writeParticles, wheightsFilename is too long\n");
         exit(EXIT_FAILURE);

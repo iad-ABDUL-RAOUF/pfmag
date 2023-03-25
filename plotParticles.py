@@ -63,7 +63,7 @@ if __name__ == "__main__":
     pfoutputdir = sys.argv[3] # TODO command line
 
     estimatesfn = pfoutputdir + "estimates.csv"
-    particlesdir = pfoutputdir + "particles/"
+    particlesdir = pfoutputdir
 
     # other parameters hardcoded for simplicity 
     xmin = -25

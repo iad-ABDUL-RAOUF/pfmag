@@ -10,7 +10,7 @@
 void writeParticles(
     const Data* states,
     const Data* logweights,
-    const char* rootDirname,
+    const char* dirname,
     unsigned int iteration
 );
 
