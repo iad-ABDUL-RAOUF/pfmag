@@ -38,9 +38,9 @@ int main(int argc, char** argv){
     // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     // Setup everything according to user input and load data.
     // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    
-    printf("load parameters\n");
-    if (argc != 8){
+    printf("-------in pfmag-------\n");
+    printf("load inputs\n");
+    if (argc != 9){
         printf("main called with wrong number of arguments\n");
         exit(EXIT_FAILURE);
     }
@@ -90,7 +90,7 @@ int main(int argc, char** argv){
     // function to compute the state estimation
     ComputeEstimates computeEstimates;
     // OPTION2 : the state is chosen here. 
-    if(strcmp(stateName,"XYPsi")){
+    if(!strcmp(stateName,"XYPsi")){
         states = createStatesXYPsi(nParticles);
         initParticles = initParticlesXYPsi;
         moveParticles = moveParticlesXYPsi;
@@ -110,7 +110,7 @@ int main(int argc, char** argv){
     // fucntion to resample particles
     ResamplingStrategy resampling;
     // PRELIMINARY,OPTION1 : the resampling strategy si choosen here
-    if (strcmp(resamplingName,"noResampling") == 0){
+    if (!strcmp(resamplingName,"noResampling")){
         resampling = doNothingResampling;
     }
     else{
