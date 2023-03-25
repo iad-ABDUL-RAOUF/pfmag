@@ -93,9 +93,9 @@ if __name__ == "__main__":
 
     #%% load ground truth
     trajectoryGt = readCsv(trajectoryGtFilename, delimiter=',',nlinetoskip=1)
-    x_gt = trajectoryGt[:,1]
-    y_gt = trajectoryGt[:,2]
-    psi_gt = trajectoryGt[:,3]
+    x_gt = trajectoryGt[:,0]
+    y_gt = trajectoryGt[:,1]
+    psi_gt = trajectoryGt[:,2]
 
     #%% load discretised map
     magmap = readCsv(magmapFilename,delimiter=',',nlinetoskip=3) 
@@ -117,7 +117,7 @@ if __name__ == "__main__":
         for sfn, wfn in zip(statesfnlist,weightsfnlist):
             print("plot iteration " + str(k))
             states = readCsv(sfn, delimiter=',',nlinetoskip=1)
-            weights = readCsv(sfn, delimiter=',',nlinetoskip=1)
+            weights = readCsv(wfn, delimiter=',',nlinetoskip=1)
             px = states[:,0]
             py = states[:,1]
             ppsi = states[:,2]
