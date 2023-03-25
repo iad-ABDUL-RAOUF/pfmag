@@ -155,6 +155,14 @@ int main(int argc, char** argv){
         writeParticles(states, logweights, outputDirname, t); // TODO virer du timer
     }
 
+    // clean up memory used by the algorithm
+    destroyData(odometry);
+    destroyData(magobs);
+    destroyData(logweights);
+    destroyData(states);
+    destroyMagneticMap(magmap);
+    gsl_rng_free(randomGenerator);
+
     // write estimates in csv file format
     char estimatesFilename[1024];
     int ret = snprintf(estimatesFilename, sizeof(estimatesFilename), "%sestimates.csv", outputDirname);
@@ -164,19 +172,7 @@ int main(int argc, char** argv){
     };
     writeCsv(estimatesFilename, estimates, "# state estimation based on particles after each observation");
 
-    // clean up memory : every "create" or "malloc" should correspond to a
-    // "destroy" or a "free".
-    destroyData(odometry);
-    destroyData(magobs);
-    destroyData(logweights);
-    destroyData(states);
-    destroyMagneticMap(magmap);
-    gsl_rng_free(randomGenerator);
-
-    // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    // Compare the particle filter estimates with the ground thruth.
-    // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    // TODO plutot à metre dans un autre executable ? qui lirait juste les estimates et la verité terrain
+    destroyData(estimates);
 
     printf("-------the end-------\n");
     return EXIT_SUCCESS;
