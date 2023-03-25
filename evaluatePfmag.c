@@ -50,13 +50,13 @@ int main(int argc, char** argv){
     if (varX < 1.0 && varY < 1.0){
         hasConverged = true;
     }
-    printf("convergence : %d", hasConverged); // O means no convergence, 1 means convergence
+    printf("convergence (no:0, yes:1) : %d", hasConverged); // O means no convergence, 1 means convergence
 
     // compute and print errors
     double diffX = meanX-trueX;
     double diffY = meanY-trueY;
-    printf("position error : %f (meter)", sqrt(diffX*diffX + diffY*diffY));
-    printf("position error : %f (degrees)", (estimatedPsi-truePsi)*180/M_PI);
+    printf("final position error : %f (meter)", sqrt(diffX*diffX + diffY*diffY));
+    printf("final orientation error : %f (degrees)", (estimatedPsi-truePsi)*180/M_PI);
     
     // Beware that it is possible to get a convergence but also a large error.
     // The filter can converge toward a wrong position and orientation.
