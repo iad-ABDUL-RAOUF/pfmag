@@ -61,9 +61,11 @@ int main(int argc, char** argv){
     double diffX = meanX-trueX;
     double diffY = meanY-trueY;
     printf("final position error : %f (meter)\n", sqrt(diffX*diffX + diffY*diffY));
-    printf("final orientation error : %f (degrees)\n", (estimatedPsi-truePsi)*180/M_PI);
+    double diffPsi = estimatedPsi-truePsi;
+    double diffPsi = fmod(diffPsi-M_PI, 2*M_PI) + M_PI; // compute angle in [-pi, pi)
+    printf("final orientation error : %f (degrees)\n", (diffPsi)*180/M_PI);
     
-    // Beware that it is possible to get a convergence but also a large error.
+    // Beware that it is possible to get simulatenously a convergence and a large error.
     // The filter can converge toward a wrong position and orientation.
     // Actually, if the error is big, it is better if the filter did not
     // converged, so the user knows it cannot trust the output.
