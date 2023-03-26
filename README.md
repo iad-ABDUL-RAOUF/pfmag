@@ -14,7 +14,11 @@ This code depend on the GNU Scientific Library (GSL) for random number generatio
 sudo apt-get install libgsl-dev
 ```
 
-If you want to plot the particles, I gave you my python script for that. It depends on TODO. However the code works just fine without it (it's a C project after all, not a python one).
+If you want to plot the particles, I gave you my python script for that. It depends on a few module. However the code works just fine without it (it's a C project after all, not a python one).
+
+```shell
+pip3 install matplotlib natsort
+```
 
 # Compilation
 
