@@ -181,6 +181,6 @@ int main(int argc, char** argv){
 
     destroyData(estimates);
 
-    printf("-------the end-------\n");
+    printf("-------the end-------\n\n");
     return EXIT_SUCCESS;
 }

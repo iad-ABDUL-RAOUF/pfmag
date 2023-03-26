@@ -60,7 +60,7 @@ if __name__ == "__main__":
     print("-------in plotParticles.py-------")
     
     #%% load paramters
-    print("-------load inputs-------")
+    print("load inputs")
     trajectoryGtFilename = sys.argv[1] # TODO command line
     print("trajectoryGtFilename : " + trajectoryGtFilename)
     magmapFilename = sys.argv[2] # TODO command line
@@ -153,7 +153,7 @@ if __name__ == "__main__":
             plt.close(fig)
             
             k+=1
-    print("-------the end-------")
+    print("-------the end-------\n")
 
     
     

@@ -69,6 +69,6 @@ int main(int argc, char** argv){
     // The filter can converge toward a wrong position and orientation.
     // Actually, if the error is big, it is better if the filter did not
     // converged, so the user knows it cannot trust the output.
-    printf("-------the end-------\n");
+    printf("-------the end-------\n\n");
     return EXIT_SUCCESS;
 }
