@@ -21,6 +21,9 @@ seed="2345"
 # the executable file
 pfmag="/home/ia266894/Documents/teaching/20230300_ENSTA_IN104/pfmag/pfmag"
 
+# copy this file so you can verify later which parameters you used
+cp /home/ia266894/Documents/teaching/20230300_ENSTA_IN104/pfmag/run.bash $outputDirname
+
 # run particle filtering using the previous parameters
 $pfmag $nParticles $odometryFilename $observationFilename $mapFilename $stateName $resamplingName $outputDirname $seed
 
