@@ -62,7 +62,7 @@ int main(int argc, char** argv){
     double diffY = meanY-trueY;
     printf("final position error : %f (meter)\n", sqrt(diffX*diffX + diffY*diffY));
     double diffPsi = estimatedPsi-truePsi;
-    double diffPsi = fmod(diffPsi-M_PI, 2*M_PI) + M_PI; // compute angle in [-pi, pi)
+    diffPsi = fmod(diffPsi-M_PI, 2*M_PI) + M_PI; // compute angle in [-pi, pi)
     printf("final orientation error : %f (degrees)\n", (diffPsi)*180/M_PI);
     
     // Beware that it is possible to get simulatenously a convergence and a large error.
