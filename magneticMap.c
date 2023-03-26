@@ -210,7 +210,7 @@ void readMapData(FILE* file, MagneticMap* magmap){
         unsigned int index = indexer(magmap,ix,iy);
 
         setVal(magmap->magVals, index, inputmag);
-        magmap->magStd[i] = inputmagStd;
+        magmap->magStd[index] = inputmagStd;
         setVal(magmap->positionGrid, i, inputposition);
     }
     destroyData(mapData);
