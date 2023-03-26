@@ -5,11 +5,11 @@
 # number of particles
 nParticles="10000"
 # odometry file name
-odometryFilename="/home/ia266894/Data/20230300-0_in104/20230322-0_atrium/trajectories/6_2994_3425/odometry.csv"
+odometryFilename="/home/ia266894/Data/20230300-0_in104/20230326-11_atrium/trajectories/6_2994_3425/odometry.csv"
 # magnetic observation file name
-observationFilename="/home/ia266894/Data/20230300-0_in104/20230322-0_atrium/trajectories/6_2994_3425/observation.csv"
+observationFilename="/home/ia266894/Data/20230300-0_in104/20230326-11_atrium/trajectories/6_2994_3425/observation.csv"
 # magnetic map file name
-mapFilename="/home/ia266894/Data/20230300-0_in104/20230322-0_atrium/magmap.mm"
+mapFilename="/home/ia266894/Data/20230300-0_in104/20230326-11_atrium/magmap.mm"
 # state name : "XYPsi" for (x,y,psi) states. Option 2 makes you implement 'XYPsiBias' too.
 stateName="XYPsi"
 # resampling name : "noResampling" to use doNothingResampling. Following the preliminary section of this project, you should implement "multinomial".
@@ -30,7 +30,7 @@ $pfmag $nParticles $odometryFilename $observationFilename $mapFilename $stateNam
 # estimation computed by the particle filter
 estimatesFilename=$outputDirname"estimates.csv"
 # file name of the true trajectory
-groundtruthFilename="/home/ia266894/Data/20230300-0_in104/20230322-0_atrium/trajectories/6_2994_3425/trajectory.csv"
+groundtruthFilename="/home/ia266894/Data/20230300-0_in104/20230326-11_atrium/trajectories/6_2994_3425/trajectory.csv"
 # the executable file
 evaluatePfmag="/home/ia266894/Documents/teaching/20230300_ENSTA_IN104/pfmag/evaluatePfmag"
 
