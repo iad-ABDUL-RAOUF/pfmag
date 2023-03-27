@@ -2,13 +2,18 @@
 
 You use google map regularly ? Robots too need to know their location, often indoor without access to Global Navigation Satellite System (comonly called GPS). Other sensor can replace it. For instance an odometry system to measure the relative displacement at each timestep and a magnetometer to observe the magnetic field that vary indoor from one position to another. The goal of this project is to implement a bootstrap particle filter algorithm to merge this two sensor outputs and estimate the localisation of the robot inside a map of the magnetic field of the building.
 
-# Dependencies
+# Using the code
 
-This code depend on the GNU Scientific Library (GSL) for random number generation
+Unless specified otherwise, these instructions assume your computer run Linux.
+
+## Dependencies
+
+This code depend on the GNU Scientific Library (GSL) for random number generation which is easily installed on Linux
 
 ```shell
 sudo apt-get install libgsl-dev
 ```
+On other distriubtion try the following tutorial https://solarianprogrammer.com/2020/01/26/getting-started-gsl-gnu-scientific-library-windows-macos-linux/
 
 If you want to plot the particles, I gave you my python3 script for that. It depends on a few module. However the C code works just fine without it (it's a C project after all). To install them globally :
 
@@ -16,7 +21,7 @@ If you want to plot the particles, I gave you my python3 script for that. It dep
 pip3 install matplotlib natsort
 ```
 
-# Compilation
+## Compilation
 
 I already created a Makefile for you, which should be updated everytime you add a new ".c" file.
 
@@ -35,11 +40,11 @@ And if you only want to remove all ".o" files while keeping the executable :
 make clean_object
 ```
 
-# Usage
+## Usage
 
 The compilation yields two executables : pfmag and evaluatePfmag. The first one run the particle filter whereas evaluatePfmag compare its output against the true trajectory to compute localisation errors. Before everything, you should create an empty output directory that will store the output files generated automatically.
 
-## Execute manually
+### Manual execution
 
 An usage example and parameter meanings are to be found in the file run.bash, and therefore they are not detailed too much here
 
@@ -61,7 +66,7 @@ python3 estimatesFilename groundtruthFilename
 ```
 It produce images of particle positions and orientations at each time steps
 
-## Execute automatically
+### Automatic execution
 
 On linux you can directly use the bash script to run everithing at once. Make it executable :
 ```shell
