@@ -1,10 +1,6 @@
-# WORK IN PROGRESS
+# PFMAG a C langage programing student project
 
-It compiles but I did not tried to execute it yet. Some features are also missing. In order to test it, I first need to create a dataset. You will also need it.
-
-DO NOT TRY TO EXECUTE yet.
-
-Stay tuned for future updates. 
+You use google map regularly ? Robots too need to know their location, often indoor without access to Global Navigation Satellite System (comonly called GPS). Other sensor can replace it. For instance an odometry system to measure the relative displacement at each timestep and a magnetometer to observe the magnetic field that vary indoor from one position to another. The goal of this project is to implement a bootstrap particle filter algorithm to merge this two sensor outputs and estimate the localisation of the robot inside a map of the magnetic field of the building.
 
 # Dependencies
 
