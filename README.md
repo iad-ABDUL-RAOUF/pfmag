@@ -37,28 +37,33 @@ make clean_object
 
 # Usage
 
-The compilation yields two executables : pfmag and evaluatePfmag. The first one run the particle filter whereas evaluatePfmag compare its output against the true trajectory to compute localisation errors.
+The compilation yields two executables : pfmag and evaluatePfmag. The first one run the particle filter whereas evaluatePfmag compare its output against the true trajectory to compute localisation errors. Before everything, you should create an empty output directory that will store the output files generated automatically.
+
+## Execute manually
+
+An usage example and parameter meanings are to be found in the file run.bash, and therefore they are not detailed too much here
 
 To run the particle filter
 ```shell
 ./pfmag nParticles odometryFilename observationFilename mapFilename stateName resamplingName outputDirname seed
 ```
-It produce the file estimates.csv that store the localisation estimation and variance at each iteration (line by line). It also produce several files weights*.csv and states*.csv containing the values and weight of each particles at each iteration (e.g states3.csv contain the values x,y,psi of each particles at the timestep 3).
+It produce the file estimates.csv in outputDirname that store the localisation estimation and variance at each iteration (line by line). It also produce several files weights*.csv and states*.csv containing the values and weight of each particles at each iteration (e.g states3.csv contain the values x,y,psi of each particles at the timestep 3).
 
 To evaluate the particle filter outputs
 ```shell
 ./evaluatePfmag estimatesFilename groundtruthFilename
 ```
-It print the error of the estimates compared to the true trajectory (groundtruth).
+It print the error of the last estimate compared to the the last position and orientation of the true trajectory (groundtruth).
 
 (optional) to plot the particles
 ```shell
 python3 estimatesFilename groundtruthFilename
 ```
+It produce images of particle positions and orientations at each time steps
 
-Examples and parameter meanings are to be found in the file run.bash
+## Execute automatically
 
-As a side note, if you use linux you can directly use the bash script to run everithing at once for you. Make it executable :
+On linux you can directly use the bash script to run everithing at once for you. Make it executable :
 ```shell
 chmod +x run.bash
 ```
@@ -67,7 +72,9 @@ Then, open it, change the filenames to match your computer path and run in a ter
 ```shell
 ./run.bash
 ```
-That's it !
+That's it ! Notice that this bash file copy itself in the output directory, so you can verify later which parameters you used
+
+On other platform (Windows, mac), I advise that you create your own script.
 
 
 # Which subject ?
