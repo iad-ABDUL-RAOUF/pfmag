@@ -58,7 +58,7 @@ To evaluate the particle filter outputs
 ```shell
 ./evaluatePfmag estimatesFilename groundtruthFilename
 ```
-It print the error of the last estimate compared to the the last position and orientation of the true trajectory (groundtruth).
+It print the error of the last estimate compared to the last position and orientation of the true trajectory (groundtruth).
 
 (optional) to plot the particles
 ```shell
@@ -79,7 +79,7 @@ Then, open it, change the filenames to match your computer path and run in a ter
 ```
 That's it ! Notice that this bash file copy itself in the output directory, so you can verify later which parameters you used
 
-On other platform (Windows, mac), I advise that you create your own script.
+On other platform (Windows, mac), I advise that you create your own script (manual execution is tedious and error prone).
 
 
 # Which subject ?
