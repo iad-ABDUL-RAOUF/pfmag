@@ -63,7 +63,7 @@ It produce images of particle positions and orientations at each time steps
 
 ## Execute automatically
 
-On linux you can directly use the bash script to run everithing at once for you. Make it executable :
+On linux you can directly use the bash script to run everithing at once. Make it executable :
 ```shell
 chmod +x run.bash
 ```
