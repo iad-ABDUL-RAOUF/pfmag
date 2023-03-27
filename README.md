@@ -37,36 +37,48 @@ make clean_object
 
 # Usage
 
-TODO : comment executer (parametres...)
+The compilation yields two executables : pfmag and evaluatePfmag. The first one run the particle filter whereas evaluatePfmag compare its output against the true trajectory to compute localisation errors.
 
-
-In details, the compilation with make yields two executables : pfmag and evaluatePfmag. The first one run the particle filter whereas evaluatePfmag compare its output against the true trajectory to compute localisation errors.
-
+To run the particle filter
 ```shell
-./pfmag TODO parameters
+./pfmag nParticles odometryFilename observationFilename mapFilename stateName resamplingName outputDirname seed
 ```
-with TODO explain parameters. TOOD dire qu'il doit y avoir un dossier partiules quelque part (ou alors ajouter un param et laisser libre le choix du dossier).
+It produce the file estimates.csv that store the localisation estimation and variance at each iteration (line by line). It also produce several files weights*.csv and states*.csv containing the values and weight of each particles at each iteration (e.g states3.csv contain the values x,y,psi of each particles at the timestep 3).
 
+To evaluate the particle filter outputs
 ```shell
-./evaluatePfmag TODO parameters
+./evaluatePfmag estimatesFilename groundtruthFilename
 ```
-with TODO explain paramters
+It print the error of the estimates compared to the true trajectory (groundtruth).
 
-If you use linux, you can directly use the bash script run.bash. Open it, change the filenames to match your computer path and run
+(optional) to plot the particles
 ```shell
-source run.bash
+python3 estimatesFilename groundtruthFilename
 ```
-It will launch automatically everything for you
+
+Examples and parameter meanings are to be found in the file run.bash
+
+As a side note, if you use linux you can directly use the bash script to run everithing at once for you. Make it executable :
+```shell
+chmod +x run.bash
+```
+
+Then, open it, change the filenames to match your computer path and run in a terminal
+```shell
+./run.bash
+```
+That's it !
+
 
 # Which subject ?
 
-You all need to work on the preliminaries to get your particle filter working.
+You all need to work on the preliminaries to get your particle filter working. Then you can choose.
 
-Then you can choose. The simultaneous localisation and calibration is harder (but more interesting ?) than the resampling part. It involves to develop a larger quantity of functions. It also requires a better understanding of the particle filtering algorithm which is not stricly speaking what is evaluated in this IN104 course. I will be happy to help. For my own research project, I'm also curious on the results you might acheive.
+The simultaneous localisation and calibration is harder (but more interesting ?) than the resampling part. It involves to develop a larger quantity of functions. It also requires a better understanding of the particle filtering algorithm which is not stricly speaking what is evaluated in this IN104 course. I will be happy to help. For my own projects, I'm also curious on the results you might acheive with the algorithms which you chose to implement.
 
-However, if you are a beginer in C, I strongly advise that you start by the resampling option.
+That being said, if you are a beginer in C, I strongly advise that you start by the resampling option.
 
-Option 3 (graphical interface) is for people not interested in either of the previous ones. However I never developped such an interface myself. You will be on your own on this one. To adress only if you are experienced in C.
+Option 3 (graphical interface) is for people not interested in either of the previous ones. I never developped such an interface myself so you will be on your own on this one. To adress only if you are experienced in C.
 
 You can do a bit of several options if you want to.
 
@@ -84,11 +96,11 @@ This project makes extensive use of list of vectors of dimention d. For instance
 
 ## Preliminaries
 
-To create your own resampling strategy, first, look at how the 'doNothingResampling' is loaded in the main. And update the main to be able to use your 'multinomialResampling' instead. You may develop it in multinomialResampling.h and multinomialResampling.c. Again take inspiration on doNothingResampling.h and .c.
+To create your own resampling strategy, first, look at how the 'doNothingResampling' is loaded in the main. Update the main to be able to use your 'multinomialResampling' instead. You may develop it in multinomialResampling.h and multinomialResampling.c. Again take inspiration on doNothingResampling.h and .c. You may also look at the usefull function provided in weight.h
 
 Using 'gsl_ran_multinomial' from GSL, to generate samples folowing the multinomial distribution, can help you.
 
-To give you an idea, my own multinomialResampling.c is less than 40 lines of code. If you need much more it might means that you made a mistake somewhere. The hardest part is mainly to understand the codebase I gave you (ask for help).
+To give you an idea, my own multinomialResampling.c file is shorter than 40 lines. If you need much more lines of code it might means that you made a mistake somewhere. The hardest part is mainly to understand the codebase and the subject I gave you (ask for help).
 
 ## Option 1 : Resampling
 
