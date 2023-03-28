@@ -84,6 +84,8 @@ On other platform (Windows, mac), I advise that you create your own script (manu
 
 # Which subject ?
 
+IN104Localisation.pdf on ecampus describes a variety of possible tasks.
+
 You all need to work on the preliminaries to get your particle filter working. Then you can choose.
 
 The simultaneous localisation and calibration is harder (but more interesting ?) than the resampling part. It involves to develop a larger quantity of functions. It also requires a better understanding of the particle filtering algorithm which is not stricly speaking what is evaluated in this IN104 course. I will be happy to help. For my own projects, I'm also curious on the results you might acheive with the algorithms which you chose to implement.
