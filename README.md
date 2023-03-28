@@ -110,7 +110,7 @@ This project makes extensive use of list of vectors of dimention d. For instance
 
 To create your own resampling strategy, first, look at how the 'doNothingResampling' is loaded in the main. Update the main to be able to use your 'multinomialResampling' instead. You may develop it in multinomialResampling.h and multinomialResampling.c. Again take inspiration on doNothingResampling.h and .c. You may also look at the usefull function provided in weight.h
 
-Using 'gsl_ran_multinomial' from GSL, to generate samples folowing the multinomial distribution, can help you.
+Using 'gsl_ran_multinomial' from GSL, to generate samples folowing the multinomial distribution, can help you. Documentation : https://www.gnu.org/software/gsl/doc/html/randist.html
 
 To give you an idea, my own multinomialResampling.c file is shorter than 40 lines. If you need much more lines of code it might means that you made a mistake somewhere. The hardest part is mainly to understand the codebase and the subject I gave you (ask for help).
 
