@@ -144,7 +144,7 @@ int main(int argc, char** argv){
     
     // compute etimation of the state and write particles
     computeEstimates(states, logweights, t, estimates);
-    writeParticles(states, logweights, outputDirname, t); // TODO virer du timer
+    writeParticles(states, logweights, outputDirname, t);
 
     // move particles for each time step
     for(t = 1; t<nObs; ++t){
@@ -159,7 +159,7 @@ int main(int argc, char** argv){
 
         // compute etimation of the state and write particles
         computeEstimates(states, logweights, t, estimates);
-        writeParticles(states, logweights, outputDirname, t); // TODO virer du timer
+        writeParticles(states, logweights, outputDirname, t);
     }
 
     // clean up memory used by the algorithm

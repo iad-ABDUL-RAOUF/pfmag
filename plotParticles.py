@@ -61,11 +61,11 @@ if __name__ == "__main__":
     
     #%% load paramters
     print("load inputs")
-    trajectoryGtFilename = sys.argv[1] # TODO command line
+    trajectoryGtFilename = sys.argv[1]
     print("trajectoryGtFilename : " + trajectoryGtFilename)
-    magmapFilename = sys.argv[2] # TODO command line
+    magmapFilename = sys.argv[2]
     print("magmapFilename : " + trajectoryGtFilename)
-    pfoutputdir = sys.argv[3] # TODO command line
+    pfoutputdir = sys.argv[3]
     print("pfoutputdir : " + trajectoryGtFilename)
 
     estimatesfn = pfoutputdir + "estimates.csv"
