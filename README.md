@@ -42,7 +42,7 @@ make clean_object
 
 ## Usage
 
-The compilation yields two executables : pfmag and evaluatePfmag. The first one run the particle filter whereas evaluatePfmag compare its output against the true trajectory to compute localisation errors. Before everything, you should create an empty output directory that will store the output files generated automatically.
+The compilation yields two executables : pfmag and evaluatePfmag. The first one run the particle filter whereas evaluatePfmag compare its output against the true trajectory to compute localisation errors. Before everything, you should create an empty output directory that will store the output files generated automatically. Also you can find an input dataset on my google drive https://drive.google.com/drive/folders/1PK4zZmvkdRXKzCP417QEnCQRxptLXyIK?usp=share_link as well as the expected outputs.
 
 ### Manual execution
 
