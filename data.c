@@ -4,9 +4,9 @@
 #include <stdio.h>
 
 struct Data{
-    // dimension of each individual sensor readings
+    // dimension of each individual vector
     unsigned int dim;
-    // length : number of element
+    // length : number of vector
     unsigned int len;
     // values
     double* vals;
